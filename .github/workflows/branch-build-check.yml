@@ -1,0 +1,17 @@
+name: Branch build check
+on:
+  push:
+    branches: [codex/v050-console-guard]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Build application
+        run: npm run build
+      - name: Syntax-check built JavaScript
+        run: find dist -type f -name '*.js' -print0 | xargs -0 -n1 node --check
