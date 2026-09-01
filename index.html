@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1018">
+  <title>Shapeshifters — Playtest</title>
+  <style>
+    html,body{margin:0;min-height:100%;background:#080d14;color:#eef2f7;font-family:system-ui,-apple-system,Segoe UI,sans-serif}
+    .boot{min-height:100vh;display:grid;place-items:center;padding:28px;text-align:center;background:radial-gradient(circle at 50% 35%,#162231 0,#0b121c 42%,#06090e 100%)}
+    .card{width:min(560px,92vw);padding:28px;border:1px solid #304258;border-radius:18px;background:#0d1621e8;box-shadow:0 18px 70px #0008}
+    h1{font-family:Georgia,serif;letter-spacing:.12em;font-size:25px;margin:0 0 10px}p{color:#aab7c5;line-height:1.5;margin:8px 0}.bar{height:7px;border-radius:999px;background:#1b2a3a;overflow:hidden;margin:20px 0 10px}.bar span{display:block;height:100%;width:12%;background:#c69a4b;transition:width .2s}.err{white-space:pre-wrap;text-align:left;color:#ffb7b7;background:#240e12;padding:12px;border-radius:10px;margin-top:14px;font-size:12px;display:none}
+  </style>
+</head>
+<body>
+<div class="boot"><div class="card"><h1>SHAPESHIFTERS</h1><p id="status">Opening the playtest…</p><div class="bar"><span id="bar"></span></div><p>This hosted version loads the game directly in Safari. No downloaded HTML file is required.</p><div id="err" class="err"></div></div></div>
+<script>
+(async function(){
+  const status=document.getElementById('status'), bar=document.getElementById('bar'), err=document.getElementById('err');
+  const step=(msg,pct)=>{status.textContent=msg;bar.style.width=pct+'%'};
+  const fail=e=>{console.error(e);status.textContent='The hosted game could not start.';bar.style.width='100%';err.style.display='block';err.textContent=(e&&e.stack)||String(e)};
+  try{
+    if(!('DecompressionStream' in window)) throw new Error('This Safari version does not support the browser decompressor required by the hosted playtest. Update Safari/iPadOS and reload.');
+    const fetchText=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(path+' returned HTTP '+r.status);return (await r.text()).trim()};
+    const b64bytes=s=>{const raw=atob(s.replace(/\s+/g,'')), out=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)out[i]=raw.charCodeAt(i);return out};
+    const concat=arrays=>{let n=0;for(const a of arrays)n+=a.length;const out=new Uint8Array(n);let o=0;for(const a of arrays){out.set(a,o);o+=a.length}return out};
+    const readParts=async(paths,prefix='payload/')=>{const arrays=[];for(const p of paths)arrays.push(b64bytes(await fetchText(prefix+p)));return concat(arrays)};
+    const gunzipText=async(paths,prefix='payload/')=>{const bytes=await readParts(paths,prefix);const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));return await new Response(stream).text()};
+    const bytesToB64=bytes=>{let s='';const CHUNK=0x8000;for(let i=0;i<bytes.length;i+=CHUNK)s+=String.fromCharCode.apply(null,bytes.subarray(i,i+CHUNK));return btoa(s)};
+    const replaceAllLiteral=(s,needle,value)=>s.split(needle).join(value);
+
+    step('Loading the game files…',18);
+    const manifest=JSON.parse(await fetchText('payload/payload-manifest.json'));
+    const baseIndexParts=manifest.text['index.html'];
+    const styleParts=manifest.text['styles.css'];
+    const cardsParts=manifest.text['cards.js'];
+    const appParts=manifest.text['app.js'];
+    if(!baseIndexParts||!styleParts||!cardsParts||!appParts) throw new Error('The playtest payload manifest is incomplete.');
+
+    step('Unpacking the rules and cards…',34);
+    let [html,css,cards,app,patchCss,patchJs]=await Promise.all([
+      gunzipText(baseIndexParts),gunzipText(styleParts),gunzipText(cardsParts),gunzipText(appParts),
+      gunzipText(['patch-v042-css.gz.b64'],''),gunzipText(['patch-v042-js.gz.b64'],'')
+    ]);
+
+    step('Restoring artwork…',53);
+    const assetPack=await readParts(manifest.assetPack);
+    for(const a of manifest.assets||[]){
+      const bytes=assetPack.subarray(a.start,a.start+a.length);
+      const ext=(a.dest.split('.').pop()||'webp').toLowerCase();
+      const mime=ext==='png'?'image/png':ext==='jpg'||ext==='jpeg'?'image/jpeg':'image/webp';
+      const data='data:'+mime+';base64,'+bytesToB64(bytes);
+      html=replaceAllLiteral(html,a.dest,data);
+      css=replaceAllLiteral(css,a.dest,data);
+      cards=replaceAllLiteral(cards,a.dest,data);
+      app=replaceAllLiteral(app,a.dest,data);
+      patchCss=replaceAllLiteral(patchCss,a.dest,data);
+      patchJs=replaceAllLiteral(patchJs,a.dest,data);
+    }
+
+    step('Starting Fox vs Snake…',76);
+    html=html.replace(/v0\.4\.0 Stable Tabletop/g,'v0.4.2 Playtest');
+    const cssUrl=URL.createObjectURL(new Blob([css+'\n'+patchCss],{type:'text/css'}));
+    const cardsUrl=URL.createObjectURL(new Blob([cards],{type:'text/javascript'}));
+    const appUrl=URL.createObjectURL(new Blob([app],{type:'text/javascript'}));
+    const patchUrl=URL.createObjectURL(new Blob([patchJs],{type:'text/javascript'}));
+    html=html.replace(/<link\s+rel="stylesheet"\s+href="styles\.css"\s*\/?>/i,'<link rel="stylesheet" href="'+cssUrl+'">');
+    html=html.replace(/\s*<link\s+rel="stylesheet"\s+href="shifters-v042-patch\.css"\s*\/?>/ig,'');
+    html=html.replace(/<script\s+src="cards\.js"><\/script>/i,'<script src="'+cardsUrl+'"><\/script>');
+    html=html.replace(/<script\s+src="app\.js"><\/script>/i,'<script src="'+appUrl+'"><\/script>');
+    if(/<script\s+src="shifters-v042-patch\.js"><\/script>/i.test(html)) html=html.replace(/<script\s+src="shifters-v042-patch\.js"><\/script>/i,'<script src="'+patchUrl+'"><\/script>');
+    else html=html.replace('</body>','<script src="'+patchUrl+'"><\/script></body>');
+
+    step('Ready.',100);
+    document.open();document.write(html);document.close();
+  }catch(e){fail(e)}
+})();
+</script>
+</body>
+</html>
