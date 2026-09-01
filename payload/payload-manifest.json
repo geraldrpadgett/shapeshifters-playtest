@@ -1,0 +1,34 @@
+{
+  "text": {
+    "index.html": ["text-index_html-00.b64"],
+    "styles.css": ["text-styles_css-00.b64"],
+    "cards.js": ["text-cards_js-00.b64"],
+    "app.js": ["text-app_js-00.b64", "text-app_js-01.b64"]
+  },
+  "assetPack": [
+    "asset-pack-00.b64",
+    "asset-pack-01.b64",
+    "asset-pack-02.b64",
+    "asset-pack-03.b64",
+    "asset-pack-04.b64",
+    "asset-pack-05.b64",
+    "asset-pack-06.b64",
+    "asset-pack-07a.b64",
+    "asset-pack-07b.b64"
+  ],
+  "assets": [
+    {"dest":"assets/asset-29b086c642e3.webp","start":0,"length":6102},
+    {"dest":"assets/asset-2be4ddd94389.webp","start":6102,"length":7390},
+    {"dest":"assets/asset-2df3a11368ab.webp","start":13492,"length":9466},
+    {"dest":"assets/asset-32e361b9521a.webp","start":22958,"length":6372},
+    {"dest":"assets/asset-3d2efe7d414f.webp","start":29330,"length":9614},
+    {"dest":"assets/asset-4086aa4e1cc8.webp","start":38944,"length":2742},
+    {"dest":"assets/asset-43b09da815c5.webp","start":41686,"length":3908},
+    {"dest":"assets/asset-66372a023d14.webp","start":45594,"length":5188},
+    {"dest":"assets/asset-8ca4eb39bee7.webp","start":50782,"length":10238},
+    {"dest":"assets/asset-ce969ee2f92b.webp","start":61020,"length":9802},
+    {"dest":"assets/asset-eaa4105e51b5.webp","start":70822,"length":9156},
+    {"dest":"assets/asset-f1632f7fb8d7.webp","start":79978,"length":8442},
+    {"dest":"assets/asset-fc76f955c71f.webp","start":88420,"length":4966}
+  ]
+}
