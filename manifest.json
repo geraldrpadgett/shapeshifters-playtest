@@ -1,0 +1,38 @@
+{
+  "text": {
+    "index.html": [
+      "chunks/text/index_html/000.txt"
+    ],
+    "styles.css": [
+      "chunks/text/styles_css/000.txt",
+      "chunks/text/styles_css/001.txt",
+      "chunks/text/styles_css/002.txt"
+    ],
+    "cards.js": [
+      "chunks/text/cards_js/000.txt",
+      "chunks/text/cards_js/001.txt"
+    ],
+    "app.js": [
+      "chunks/text/app_js/000.txt",
+      "chunks/text/app_js/001.txt",
+      "chunks/text/app_js/002.txt",
+      "chunks/text/app_js/003.txt",
+      "chunks/text/app_js/004.txt"
+    ]
+  },
+  "binary": {
+    "assets/asset-29b086c642e3.webp": "chunks/bin/asset-29b086c642e3.webp.b64",
+    "assets/asset-2be4ddd94389.webp": "chunks/bin/asset-2be4ddd94389.webp.b64",
+    "assets/asset-2df3a11368ab.webp": "chunks/bin/asset-2df3a11368ab.webp.b64",
+    "assets/asset-32e361b9521a.webp": "chunks/bin/asset-32e361b9521a.webp.b64",
+    "assets/asset-3d2efe7d414f.webp": "chunks/bin/asset-3d2efe7d414f.webp.b64",
+    "assets/asset-4086aa4e1cc8.webp": "chunks/bin/asset-4086aa4e1cc8.webp.b64",
+    "assets/asset-43b09da815c5.webp": "chunks/bin/asset-43b09da815c5.webp.b64",
+    "assets/asset-66372a023d14.webp": "chunks/bin/asset-66372a023d14.webp.b64",
+    "assets/asset-8ca4eb39bee7.webp": "chunks/bin/asset-8ca4eb39bee7.webp.b64",
+    "assets/asset-ce969ee2f92b.webp": "chunks/bin/asset-ce969ee2f92b.webp.b64",
+    "assets/asset-eaa4105e51b5.webp": "chunks/bin/asset-eaa4105e51b5.webp.b64",
+    "assets/asset-f1632f7fb8d7.webp": "chunks/bin/asset-f1632f7fb8d7.webp.b64",
+    "assets/asset-fc76f955c71f.webp": "chunks/bin/asset-fc76f955c71f.webp.b64"
+  }
+}
