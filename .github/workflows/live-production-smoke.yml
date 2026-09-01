@@ -1,0 +1,23 @@
+name: Live production smoke
+on:
+  push:
+    branches: [main]
+
+jobs:
+  production-smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - name: Install browser test runtime
+        run: |
+          npm install --no-save playwright@1.55.0
+          npx playwright install --with-deps chromium
+      - name: Test deployed production game
+        env:
+          PLAYTEST_URL: https://shapeshifters-playtest-wzwi.vercel.app
+          EXPECTED_VERSION: 0.4.9-combat-polish
+        run: node tests/live-smoke.cjs
