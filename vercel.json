@@ -2,6 +2,6 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": null,
   "installCommand": "",
-  "buildCommand": "rm -rf dist && mkdir dist && cp index.html dist/index.html && cp -R payload dist/payload && cp patch-v042-js.gz.b64 patch-v042-css.gz.b64 dist/",
+  "buildCommand": "npm run build",
   "outputDirectory": "dist"
 }
