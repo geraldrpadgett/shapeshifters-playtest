@@ -1,0 +1,58 @@
+/* v0.5.0 — card readability and overlay separation */
+.card.has-trigger-badges-v050 .trigger-badges{
+  position:static!important;
+  display:flex!important;
+  width:auto!important;
+  max-width:none!important;
+  min-height:12px!important;
+  margin:15px 4px 3px!important;
+  padding:0!important;
+  gap:3px!important;
+  align-items:center!important;
+  justify-content:flex-start!important;
+  pointer-events:none!important;
+}
+.card .trigger-badges:not(:has(.trigger-chip)){display:none!important}
+.card.has-trigger-badges-v050 .card-type{
+  position:relative!important;
+  z-index:2!important;
+  margin-top:0!important;
+  padding-top:0!important;
+  clear:both!important;
+}
+.card .card-number{
+  position:absolute!important;
+  top:4px!important;
+  left:5px!important;
+  right:auto!important;
+  z-index:12!important;
+}
+.card .cost{
+  z-index:12!important;
+}
+/* Base-card action hints such as READY TO CAST / INSPECT stay away from the card number. */
+[data-hand-card] .play-hint,
+[data-zone-card] .play-hint,
+.card .play-hint{
+  top:auto!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:4px!important;
+  transform:translateX(-50%)!important;
+  max-width:calc(100% - 10px)!important;
+  white-space:normal!important;
+  text-align:center!important;
+  z-index:11!important;
+}
+/* If the base renderer uses a generic action/status badge, anchor it opposite the card number. */
+[data-hand-card] > .status,
+[data-hand-card] > .card-status,
+[data-hand-card] > .inspect-hint,
+[data-hand-card] > .cast-hint{
+  top:4px!important;
+  left:auto!important;
+  right:5px!important;
+  max-width:62%!important;
+  z-index:11!important;
+}
+.detail-trigger-row .trigger-badges{position:static!important;margin:0!important;max-width:none!important}
