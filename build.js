@@ -19,4 +19,8 @@ for(const a of manifest.assets){
   fs.mkdirSync(path.dirname(fp),{recursive:true});
   fs.writeFileSync(fp,assets.subarray(a.start,a.start+a.length));
 }
-console.log('Built Shapeshifters v0.4.0 into dist/');
+for(const [packed,dest] of [['patch-v042-js.gz.b64','shifters-v042-patch.js'],['patch-v042-css.gz.b64','shifters-v042-patch.css']]){
+  const gz=Buffer.from(fs.readFileSync(path.join(__dirname,packed),'utf8').trim(),'base64');
+  fs.writeFileSync(path.join(out,dest),zlib.gunzipSync(gz));
+}
+console.log('Built Shapeshifters v0.4.2 into dist/');
