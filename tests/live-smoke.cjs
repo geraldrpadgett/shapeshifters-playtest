@@ -5,6 +5,7 @@ const BASE = process.env.PLAYTEST_URL || 'https://shapeshifters-playtest-wzwi.ve
 const EXPECTED = process.env.EXPECTED_VERSION || '0.4.9-combat-polish';
 const fresh = () => `${BASE}/?smoke=${Date.now()}-${Math.random().toString(36).slice(2)}`;
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+const step = name => console.log(`SMOKE_STEP ${name}`);
 
 (async()=>{
   const browser = await chromium.launch({headless:true});
@@ -13,22 +14,26 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   page.on('pageerror',e=>errors.push(`pageerror: ${e.message}`));
   page.on('console',m=>{if(m.type()==='error')errors.push(`console: ${m.text()}`);});
 
+  step('wait-production');
   let version='';
   for(let attempt=0;attempt<30;attempt++){
     await page.goto(fresh(),{waitUntil:'domcontentloaded',timeout:30000});
-    try{await page.waitForFunction(()=>window.GAME_DATA&&window.state&&document.querySelectorAll('.player-board').length===2,{timeout:15000});}catch(_e){}
-    version=await page.evaluate(()=>window.GAME_DATA?.version||'');
+    try{await page.waitForFunction(()=>typeof GAME_DATA!=='undefined'&&typeof state!=='undefined'&&state?.players&&document.querySelectorAll('.player-board').length===2,{timeout:8000});}catch(_e){}
+    version=await page.evaluate(()=>typeof GAME_DATA!=='undefined'?(GAME_DATA?.version||''):'');
+    console.log(`SMOKE_VERSION attempt=${attempt+1} version=${version||'missing'}`);
     if(version===EXPECTED)break;
-    await sleep(5000);
+    await sleep(3000);
   }
   assert.equal(version,EXPECTED,`production did not reach ${EXPECTED}; saw ${version}`);
 
+  step('new-game');
   await page.locator('#newGameBtn').click();
   if(await page.locator('#confirmDialog[open]').count()) await page.locator('#confirmYes').click();
   await page.waitForFunction(()=>document.querySelectorAll('.player-board').length===2);
   const boardText=await page.locator('#gameRoot').innerText();
   assert.match(boardText,/Fox/i); assert.match(boardText,/Snake/i);
 
+  step('glamour-inspect');
   const glamour=await page.evaluate(()=>{
     const p=state.players[0],g=p.glamourDeck.pop();g.tapped=false;p.glamourField=[g];saveAndRender();return {name:g.name,text:g.text,number:g.number,value:g.value};
   });
@@ -43,6 +48,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   assert.ok(glamourDialog.includes(`${glamour.value} Glamour`));
   await page.evaluate(()=>closeDialog('cardDialog'));
 
+  step('floating-glamour');
   const floatResult=await page.evaluate(()=>{
     const p=state.players[0];
     if(!p.v044)p.v044={};p.v044.floatingGlamour=0;
@@ -53,6 +59,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   assert.deepEqual(floatResult,{paid:true,float:1,tapped:true});
   await page.waitForFunction(()=>Array.from(document.querySelectorAll('.floating-glamour-v049')).some(el=>/FLOATING\s+1/.test(el.textContent||'')));
 
+  step('discard-inspect');
   const discarded=await page.evaluate(()=>{
     const p=state.players[0],c=p.hand[0];p.discard=[c];saveAndRender();return c.name;
   });
@@ -64,6 +71,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   assert.ok((await page.locator('#cardDialog').innerText()).includes(discarded));
   await page.evaluate(()=>closeDialog('cardDialog'));
 
+  step('revert-recover');
   const revert=page.locator('[data-shifter-flip^="0|"]').first();
   assert.equal((await revert.innerText()).trim(),'REVERT');
   await revert.click();
@@ -72,6 +80,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   await page.locator('[data-shifter-flip^="0|"]').first().click();
   await page.waitForFunction(()=>state.players[0].flipped===false&&state.players[0].damage===0);
 
+  step('permanent-stat');
   const permanent=await page.evaluate(()=>{
     const p=state.players[0],base=p.stats.strength;
     p.awakeningDeck=[{id:'smoke-aw-perm',number:998,level:998,name:'Smoke Strength',text:'Your Shifter gets +1 Strength.'}];
@@ -80,6 +89,7 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
   });
   assert.equal(permanent.after,permanent.base+1);
 
+  step('combat-sequence');
   await page.locator('#newGameBtn').click();
   if(await page.locator('#confirmDialog[open]').count()) await page.locator('#confirmYes').click();
   await page.waitForFunction(()=>document.querySelectorAll('.player-board').length===2);
