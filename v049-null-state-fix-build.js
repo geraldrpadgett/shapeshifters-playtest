@@ -5,8 +5,8 @@ const target=path.join(__dirname,'dist','shifters-v045-patch.js');
 let source=fs.readFileSync(target,'utf8');
 
 function guardPhaseDecorator(name){
-  const unsafe=new RegExp(`(function\\s+${name}\\(\\)\\{\\s*)if\\(state(?:\\?\\.)?phase!==3\\)return;`);
-  const safe=new RegExp(`function\\s+${name}\\(\\)\\{[\\s\\S]{0,120}?if\\(!state(?:\\?\\.)?players\\|\\|state\\.phase!==3\\)return;`);
+  const unsafe=new RegExp(`(function\\s+${name}\\(\\)\\{\\s*)if\\(state(?:\\?\\.|\\.)phase!==3\\)return;`);
+  const safe=new RegExp(`function\\s+${name}\\(\\)\\{[\\s\\S]{0,120}?if\\(!state(?:\\?\\.|\\.)players\\|\\|state\\.phase!==3\\)return;`);
   if(unsafe.test(source)){
     source=source.replace(unsafe,`$1if(!state?.players||state.phase!==3)return;`);
   }else if(!safe.test(source)){
