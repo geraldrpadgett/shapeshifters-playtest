@@ -1,8 +1,5 @@
 {
   "name": "shapeshifters-playtest",
   "private": true,
-  "version": "0.4.2",
-  "scripts": {
-    "build": "node build.js"
-  }
+  "version": "0.4.2"
 }
