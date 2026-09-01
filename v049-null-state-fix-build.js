@@ -20,5 +20,10 @@ const queueSafe="function queueDecorateV045(){if(v045DecorateQueued)return;v045D
 if(source.includes(queueUnsafe)){source=source.replace(queueUnsafe,queueSafe);applied.push('queueDecorateV045');}
 else if(source.includes(queueSafe))applied.push('queueDecorateV045-already-safe');
 
+const renderUnsafe="render=function(){ensureState();priorRender();reflowV044();decorateRevertButtons();decorateCombat();decorateNextButton();updateSubtitle();};";
+const renderSafe="render=function(){ensureState();priorRender();if(!state?.players)return;reflowV044();decorateRevertButtons();decorateCombat();decorateNextButton();updateSubtitle();};";
+if(source.includes(renderUnsafe)){source=source.replace(renderUnsafe,renderSafe);applied.push('legacy-render');}
+else if(source.includes(renderSafe))applied.push('legacy-render-already-safe');
+
 fs.writeFileSync(target,source);
 console.log('Applied New Game null-state guards:',applied.join(', ')||'no matching decorators');
