@@ -11,7 +11,7 @@
   }
 
   function decorateFloatingGlamour049(){
-    if(!window.state?.players)return;
+    if(typeof state==='undefined'||!state?.players)return;
     document.querySelectorAll('.glamour-lane').forEach(lane=>{
       const board=lane.closest('.player-board'),pi=playerIndexFromBoard(board);if(pi===null||!state.players[pi])return;
       const p=state.players[pi],floating=Math.max(0,Number(p.v044?.floatingGlamour)||0);
@@ -34,7 +34,7 @@
   }
 
   function decorateTriggerAttention049(){
-    const combat=state?.phase===3?state.combat:null;
+    const combat=typeof state!=='undefined'&&state?.phase===3?state.combat:null;
     document.querySelectorAll('.has-react,.has-manifest').forEach(card=>{
       card.classList.remove('trigger-live-v049');
       if(!combat)return;
@@ -46,7 +46,7 @@
   }
 
   function inspectDiscard049(pi,index){
-    const c=state?.players?.[pi]?.discard?.[index];if(!c)return;
+    const c=typeof state!=='undefined'?state?.players?.[pi]?.discard?.[index]:null;if(!c)return;
     const eyebrow=document.getElementById('cardDialogEyebrow'),title=document.getElementById('cardDialogTitle'),body=document.getElementById('cardDialogBody');
     if(!body)return;
     if(eyebrow)eyebrow.textContent='DISCARD';
@@ -56,7 +56,7 @@
   }
 
   function openDiscard049(pi){
-    const p=state?.players?.[pi],dialog=document.getElementById('discardDialog'),title=document.getElementById('discardDialogTitle'),cards=document.getElementById('discardDialogCards');
+    const p=typeof state!=='undefined'?state?.players?.[pi]:null,dialog=document.getElementById('discardDialog'),title=document.getElementById('discardDialogTitle'),cards=document.getElementById('discardDialogCards');
     if(!p||!dialog||!cards)return;
     if(title)title.textContent=`${p.name} Memory Discard · ${p.discard.length}`;
     cards.innerHTML=p.discard.length?p.discard.map((c,i)=>`<button type="button" class="discard-card-v049" data-v049-discard-card="${pi}|${i}" aria-label="Inspect ${escape049(c.name||'discarded card')}">${cardMarkup(c,true)}</button>`).join(''):'<div class="empty-zone-v049">No Memory cards have been discarded.</div>';
