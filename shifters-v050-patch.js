@@ -49,6 +49,13 @@
       const badges=card.querySelector('.trigger-badges');
       card.classList.toggle('has-trigger-badges-v050',!!badges&&badges.children.length>0);
     });
+    document.querySelectorAll('[data-hand-card],[data-zone-card]').forEach(wrapper=>{
+      wrapper.querySelectorAll('*').forEach(el=>{
+        if(el.children.length)return;
+        const text=(el.textContent||'').trim();
+        if(/^(?:READY TO CAST|CAST|INSPECT|READY|PLAYABLE)(?:\s*[·/|-]\s*INSPECT)?$/i.test(text))el.classList.add('card-action-hint-v050');
+      });
+    });
   }
   let queued=false;
   function queue050(){if(queued)return;queued=true;setTimeout(()=>{queued=false;decorateCardSpacing050();},0);}
