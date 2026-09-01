@@ -11,6 +11,7 @@
     .card{width:min(560px,92vw);padding:28px;border:1px solid #304258;border-radius:18px;background:#0d1621e8;box-shadow:0 18px 70px #0008}
     h1{font-family:Georgia,serif;letter-spacing:.12em;font-size:25px;margin:0 0 10px}p{color:#aab7c5;line-height:1.5;margin:8px 0}.bar{height:7px;border-radius:999px;background:#1b2a3a;overflow:hidden;margin:20px 0 10px}.bar span{display:block;height:100%;width:12%;background:#c69a4b;transition:width .2s}.err{white-space:pre-wrap;text-align:left;color:#ffb7b7;background:#240e12;padding:12px;border-radius:10px;margin-top:14px;font-size:12px;display:none}
   </style>
+  <script src="https://cdn.jsdelivr.net/npm/pako@2.1.0/dist/pako.min.js"></script>
 </head>
 <body>
 <div class="boot"><div class="card"><h1>SHAPESHIFTERS</h1><p id="status">Opening the playtest…</p><div class="bar"><span id="bar"></span></div><p>This hosted version loads the game directly in Safari. No downloaded HTML file is required.</p><div id="err" class="err"></div></div></div>
@@ -20,12 +21,12 @@
   const step=(msg,pct)=>{status.textContent=msg;bar.style.width=pct+'%'};
   const fail=e=>{console.error(e);status.textContent='The hosted game could not start.';bar.style.width='100%';err.style.display='block';err.textContent=(e&&e.stack)||String(e)};
   try{
-    if(!('DecompressionStream' in window)) throw new Error('This Safari version does not support the browser decompressor required by the hosted playtest. Update Safari/iPadOS and reload.');
+    if(!window.pako) throw new Error('The Safari-compatible game decoder did not load. Reload the page while connected to the internet.');
     const fetchText=async path=>{const r=await fetch(path,{cache:'no-store'});if(!r.ok)throw new Error(path+' returned HTTP '+r.status);return (await r.text()).trim()};
     const b64bytes=s=>{const raw=atob(s.replace(/\s+/g,'')), out=new Uint8Array(raw.length);for(let i=0;i<raw.length;i++)out[i]=raw.charCodeAt(i);return out};
     const concat=arrays=>{let n=0;for(const a of arrays)n+=a.length;const out=new Uint8Array(n);let o=0;for(const a of arrays){out.set(a,o);o+=a.length}return out};
     const readParts=async(paths,prefix='payload/')=>{const arrays=[];for(const p of paths)arrays.push(b64bytes(await fetchText(prefix+p)));return concat(arrays)};
-    const gunzipText=async(paths,prefix='payload/')=>{const bytes=await readParts(paths,prefix);const stream=new Blob([bytes]).stream().pipeThrough(new DecompressionStream('gzip'));return await new Response(stream).text()};
+    const gunzipText=async(paths,prefix='payload/')=>{const bytes=await readParts(paths,prefix);const unpacked=window.pako.ungzip(bytes);return new TextDecoder('utf-8').decode(unpacked)};
     const bytesToB64=bytes=>{let s='';const CHUNK=0x8000;for(let i=0;i<bytes.length;i+=CHUNK)s+=String.fromCharCode.apply(null,bytes.subarray(i,i+CHUNK));return btoa(s)};
     const replaceAllLiteral=(s,needle,value)=>s.split(needle).join(value);
 
