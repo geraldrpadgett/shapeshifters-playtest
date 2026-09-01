@@ -4,13 +4,28 @@ const path=require('path');
 const target=path.join(__dirname,'dist','shifters-v045-patch.js');
 let source=fs.readFileSync(target,'utf8');
 
-const unsafe="function decorateNextButton(){\n    if(state.phase!==3)return;";
-const safe="function decorateNextButton(){\n    if(!state||state.phase!==3)return;";
-
-if(!source.includes(unsafe)){
-  throw new Error('Expected v0.4.5 decorateNextButton null-state pattern was not found.');
+function guard(unsafe,safe,label){
+  if(!source.includes(unsafe))throw new Error(`Expected ${label} null-state pattern was not found.`);
+  source=source.replace(unsafe,safe);
 }
 
-source=source.replace(unsafe,safe);
+guard(
+  "function decorateCombat(){\n    if(state.phase!==3)return;",
+  "function decorateCombat(){\n    if(!state?.players||state.phase!==3)return;",
+  'decorateCombat'
+);
+
+guard(
+  "function decorateNextButton(){\n    if(state.phase!==3)return;",
+  "function decorateNextButton(){\n    if(!state?.players||state.phase!==3)return;",
+  'decorateNextButton'
+);
+
+guard(
+  "function decorateV045(){\n    if(v045Decorating)return;v045Decorating=true;",
+  "function decorateV045(){\n    if(v045Decorating||!state?.players)return;v045Decorating=true;",
+  'decorateV045'
+);
+
 fs.writeFileSync(target,source);
-console.log('Applied v0.4.9 New Game null-state render guard.');
+console.log('Applied New Game null-state guards to tabletop decorators.');
