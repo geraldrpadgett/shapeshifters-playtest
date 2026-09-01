@@ -15,5 +15,10 @@ const observerSafe="function decorateV045(){\n    if(v045Decorating||!state?.pla
 if(source.includes(observerUnsafe)){source=source.replace(observerUnsafe,observerSafe);applied.push('decorateV045');}
 else if(source.includes(observerSafe))applied.push('decorateV045-already-safe');
 
+const queueUnsafe="function queueDecorateV045(){if(v045DecorateQueued)return;v045DecorateQueued=true;setTimeout(()=>{v045DecorateQueued=false;rootObserverV045?.disconnect();dialogObserverV045?.disconnect();decorateV045();observeV045();},0);}";
+const queueSafe="function queueDecorateV045(){if(v045DecorateQueued)return;v045DecorateQueued=true;setTimeout(()=>{v045DecorateQueued=false;rootObserverV045?.disconnect();dialogObserverV045?.disconnect();if(!state?.players)return;decorateV045();observeV045();},0);}";
+if(source.includes(queueUnsafe)){source=source.replace(queueUnsafe,queueSafe);applied.push('queueDecorateV045');}
+else if(source.includes(queueSafe))applied.push('queueDecorateV045-already-safe');
+
 fs.writeFileSync(target,source);
 console.log('Applied New Game null-state guards:',applied.join(', ')||'no matching decorators');
