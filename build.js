@@ -20,16 +20,17 @@ for(const a of manifest.assets){
   fs.mkdirSync(path.dirname(fp),{recursive:true});
   fs.writeFileSync(fp,assets.subarray(a.start,a.start+a.length));
 }
-fs.copyFileSync(path.join(__dirname,'shifters-v043-patch.js'),path.join(out,'shifters-v043-patch.js'));
-fs.copyFileSync(path.join(__dirname,'shifters-v043-patch.css'),path.join(out,'shifters-v043-patch.css'));
+for(const name of ['shifters-v043-patch.js','shifters-v043-patch.css','shifters-v044-patch.js','shifters-v044-patch.css']){
+  fs.copyFileSync(path.join(__dirname,name),path.join(out,name));
+}
 const indexPath=path.join(out,'index.html');
 let html=fs.readFileSync(indexPath,'utf8');
-html=html.replace(/\s*<link[^>]*shifters-v042-patch\.css[^>]*>/ig,'');
-html=html.replace(/\s*<script[^>]*shifters-v042-patch\.js[^>]*><\/script>/ig,'');
-html=html.replace(/\s*<link[^>]*shifters-v043-patch\.css[^>]*>/ig,'');
-html=html.replace(/\s*<script[^>]*shifters-v043-patch\.js[^>]*><\/script>/ig,'');
-html=html.replace(/v0\.4\.0 Stable Tabletop/g,'v0.4.3 Awakening Choice');
-html=html.replace('</head>','  <link rel="stylesheet" href="shifters-v043-patch.css">\n</head>');
-html=html.replace('</body>','  <script src="shifters-v043-patch.js"></script>\n</body>');
+for(const version of ['v042','v043','v044']){
+  html=html.replace(new RegExp('\\s*<link[^>]*shifters-'+version+'-patch\\.css[^>]*>','ig'),'');
+  html=html.replace(new RegExp('\\s*<script[^>]*shifters-'+version+'-patch\\.js[^>]*><\\/script>','ig'),'');
+}
+html=html.replace(/v0\.4\.0 Stable Tabletop/g,'v0.4.4 Automated Tabletop');
+html=html.replace('</head>','  <link rel="stylesheet" href="shifters-v043-patch.css">\n  <link rel="stylesheet" href="shifters-v044-patch.css">\n</head>');
+html=html.replace('</body>','  <script src="shifters-v043-patch.js"></script>\n  <script src="shifters-v044-patch.js"></script>\n</body>');
 fs.writeFileSync(indexPath,html);
-console.log('Built Shapeshifters v0.4.3 plain static site into dist/');
+console.log('Built Shapeshifters v0.4.4 automated tabletop into dist/');
