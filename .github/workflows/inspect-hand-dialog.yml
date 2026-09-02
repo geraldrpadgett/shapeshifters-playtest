@@ -1,4 +1,4 @@
-name: Inspect Active Hand source
+name: Inspect support row source
 on:
   push:
     branches: [inspect-hand-dialog-v052]
@@ -12,16 +12,17 @@ jobs:
         with:
           node-version: 20
       - run: npm run build
-      - name: Print Active Hand source
+      - name: Print support row source
         run: |
           node - <<'NODE'
           const fs=require('fs');
-          for(const file of ['dist/app.js','dist/shifters-v045-patch.js','dist/shifters-v051-patch.js']){
+          for(const file of ['dist/app.js','dist/shifters-v045-patch.js']){
             if(!fs.existsSync(file))continue;
             const s=fs.readFileSync(file,'utf8');
-            for(const needle of ['function openMyHandDialog','openMyHandDialog=function','handDialogBody','data-hand-card']){
+            for(const needle of ['support-row','Guardian','Relic']){
               let i=s.indexOf(needle);
-              while(i>=0){console.log(`HAND_SOURCE ${file} ${needle}\n${s.slice(Math.max(0,i-700),i+3000)}\nHAND_SOURCE_END`);i=s.indexOf(needle,i+1);}
+              let shown=0;
+              while(i>=0&&shown<8){const piece=s.slice(Math.max(0,i-1000),i+2600);if(piece.includes('support-row')){console.log(`SUPPORT_SOURCE ${file} ${needle}\n${piece}\nSUPPORT_SOURCE_END`);shown++;}i=s.indexOf(needle,i+1);}
             }
           }
           NODE
