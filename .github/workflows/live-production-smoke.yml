@@ -23,11 +23,15 @@ jobs:
           test -f dist/shifters-v055-prismatic.js
           test -f dist/shifters-v056-dnd.css
           test -f dist/shifters-v056-dnd.js
+          test -f dist/shifters-v057-visual-fix.css
+          test -f dist/shifters-v057-visual-fix.js
           grep -q 'shifters-v054-decks.js' dist/index.html
           grep -q 'shifters-v056-dnd.css' dist/index.html
           grep -q 'shifters-v056-dnd.js' dist/index.html
+          grep -q 'shifters-v057-visual-fix.css' dist/index.html
+          grep -q 'shifters-v057-visual-fix.js' dist/index.html
           grep -q '0.5.4-app-beta-v02-decks' dist/shifters-v054-decks.js
-          grep -q '0.5.6-dnd-tabletop' dist/shifters-v056-dnd.js
+          grep -q '0.5.7-visual-layer-fix' dist/shifters-v057-visual-fix.js
       - name: Install browser test runtime
         run: |
           npm install --no-save playwright@1.55.0
@@ -35,7 +39,7 @@ jobs:
       - name: Test deployed production game
         env:
           PLAYTEST_URL: https://shapeshifters-playtest-wzwi.vercel.app
-          EXPECTED_VERSION: 0.5.6-dnd-tabletop
+          EXPECTED_VERSION: 0.5.7-visual-layer-fix
         run: |
           node tests/live-smoke.cjs
           node tests/v052-rules-smoke.cjs
@@ -45,6 +49,6 @@ jobs:
         if: always()
         uses: actions/upload-artifact@v4
         with:
-          name: v056-dnd-tabletop-screenshot
-          path: artifacts/v056-dnd-tabletop.png
+          name: v057-layer-fix-screenshot
+          path: artifacts/v057-layer-fix.png
           if-no-files-found: ignore
