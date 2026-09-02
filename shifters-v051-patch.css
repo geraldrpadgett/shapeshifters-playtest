@@ -1,0 +1,71 @@
+/* v0.5.1 — automatic Shifter controls, fixed card numbers, hand resource summary */
+
+/* Recover/Revert are engine actions now; there is no manual Shifter flip control. */
+.shifter-center [data-shifter-flip],
+.shifter-center [data-revert]{display:none!important}
+
+/* v0.5.0 inherited a full-height card-number box from the base card geometry.
+   Force the number back into a small horizontal badge so it never covers text. */
+.card .card-number{
+  position:absolute!important;
+  top:5px!important;
+  left:6px!important;
+  right:auto!important;
+  bottom:auto!important;
+  width:auto!important;
+  min-width:0!important;
+  max-width:max-content!important;
+  height:16px!important;
+  min-height:16px!important;
+  max-height:16px!important;
+  padding:0 5px!important;
+  margin:0!important;
+  display:inline-flex!important;
+  align-items:center!important;
+  justify-content:center!important;
+  box-sizing:border-box!important;
+  writing-mode:horizontal-tb!important;
+  white-space:nowrap!important;
+  line-height:16px!important;
+  overflow:visible!important;
+  transform:none!important;
+  z-index:14!important;
+}
+
+/* Trigger chips stay in their own row; color/type begins beneath them. */
+.card.has-trigger-badges-v050 .trigger-badges{
+  margin:23px 4px 3px!important;
+  min-height:12px!important;
+}
+.card.has-trigger-badges-v050 .card-type{margin-top:0!important}
+
+/* READY TO CAST / INSPECT remains at the bottom and cannot share the number row. */
+[data-hand-card] .play-hint,
+[data-zone-card] .play-hint,
+.card .play-hint{
+  top:auto!important;
+  left:50%!important;
+  right:auto!important;
+  bottom:5px!important;
+  transform:translateX(-50%)!important;
+  width:auto!important;
+  max-width:calc(100% - 12px)!important;
+  min-height:0!important;
+  height:auto!important;
+  white-space:normal!important;
+  text-align:center!important;
+  z-index:12!important;
+}
+
+.hand-glamour-summary-v051{
+  margin:0 14px 10px;
+  padding:8px 11px;
+  border:1px solid #80653a;
+  border-radius:9px;
+  background:#1d160ce8;
+  color:#f0d49b;
+  font-size:11px;
+  font-weight:850;
+  letter-spacing:.04em;
+  text-align:center;
+}
