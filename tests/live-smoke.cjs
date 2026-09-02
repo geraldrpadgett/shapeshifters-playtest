@@ -38,7 +38,9 @@ const overlaps=(a,b)=>!!a&&!!b&&a.left<b.right&&a.right>b.left&&a.top<b.bottom&&
   assert.equal(opening.buttons,0,'manual Recover/Revert buttons must be removed');
 
   step('automatic-next-turn-draw');
-  await page.evaluate(()=>{state.phase=6;startNextTurn(false);});
+  await page.evaluate(()=>{state.phase=6;saveAndRender();});
+  await page.waitForSelector('#nextPhaseBtn');
+  await page.locator('#nextPhaseBtn').click();
   await page.waitForFunction(()=>state.active===1&&state.phase===2);
   const nextTurn=await page.evaluate(()=>({hand:state.players[1].hand.length,glamour:state.players[1].glamourField.length,phaseName:GAME_DATA.phases[state.phase]}));
   assert.match(nextTurn.phaseName,/Cast/i);
