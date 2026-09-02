@@ -16,6 +16,12 @@ jobs:
         run: npm run build
       - name: Syntax-check built JavaScript
         run: find dist -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: Verify fantasy theme assets
+        run: |
+          test -f dist/shifters-v053-fantasy.css
+          test -f dist/shifters-v053-fantasy.js
+          grep -q 'shifters-v053-fantasy.css' dist/index.html
+          grep -q 'shifters-v053-fantasy.js' dist/index.html
       - name: Install browser test runtime
         run: |
           npm install --no-save playwright@1.55.0
@@ -23,7 +29,7 @@ jobs:
       - name: Test deployed production game
         env:
           PLAYTEST_URL: https://shapeshifters-playtest-wzwi.vercel.app
-          EXPECTED_VERSION: 0.5.2-shifter-glamour-cap
+          EXPECTED_VERSION: 0.5.3-fantasy-tabletop
         run: |
           node tests/live-smoke.cjs
           node tests/v052-rules-smoke.cjs
