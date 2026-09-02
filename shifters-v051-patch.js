@@ -87,9 +87,14 @@
   }
   function automaticOpening051(){
     if(typeof state==='undefined'||!state?.players||state.winner||state.pendingAwakening||typeof nextPhase!=='function')return;
-    const p=state.players[state.active];if(!p)return;
+    const pi=state.active,p=state.players[pi];if(!p)return;
     if(state.phase===0&&!p._v051AutoPhase0){p._v051AutoPhase0=true;nextPhase();return;}
-    if(state.phase===1&&!p._v051AutoDraw){p._v051AutoDraw=true;nextPhase();}
+    if(state.phase===1&&!p._v051AutoDraw){
+      p._v051AutoDraw=true;
+      const firstSkip=typeof isFirstPlayerFirstTurn==='function'&&isFirstPlayerFirstTurn();
+      if(!firstSkip&&!p.flags?.memoryDrawn){drawMemory051(pi,1,'turn');if(!p.flags)p.flags={};p.flags.memoryDrawn=true;}
+      nextPhase();
+    }
   }
 
   if(typeof prepareTurnStart==='function'){
