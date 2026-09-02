@@ -93,4 +93,4 @@ const step=name=>console.log(`V054_SMOKE_STEP ${name}`);
   assert.deepEqual(errors,[],`browser errors: ${errors.join(' | ')}`);
   console.log('V054_LIVE_SMOKE_PASS',JSON.stringify({version,decks:{foxMemory:decks.fox.memory.count,snakeMemory:decks.snake.memory.count,glamourValues:decks.fox.glamour.values},manifestTruth,relicResource,discount,reacts,awakenTruth}));
   await browser.close();
-})().catch(async err=>{console.error(err);process.exitCode=1;});
+})().catch(err=>{console.error(err);process.exit(1);});
