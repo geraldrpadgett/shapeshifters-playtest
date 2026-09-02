@@ -56,16 +56,22 @@ required(oldAuto,newAuto,'nine-card Glamour choice engine');
 
 fs.writeFileSync(gamePath,game);
 
-// The legacy renderer still emitted manual Shifter flip/revert controls and the
-// v0.5.1 decorator removed them a tick later. Remove them at build time so they
-// never exist or flash in the DOM.
+// Remove legacy manual Shifter controls at the renderer itself, so they never
+// appear for a frame before the later decorator runs.
 const appPath=path.join(out,'app.js');
 let app=fs.readFileSync(appPath,'utf8');
-const appBefore=app;
+const appBeforeControls=app;
 app=app.replace(/<button class="button primary" data-shifter-flip="[^"]+">Flip Face Up<\/button>/g,'');
 app=app.replace(/<button class="shifter-flip-corner" data-shifter-flip="[^"]+" title="[^"]*">FLIP<\/button>\s*/g,'');
 app=app.replace(/<button class="mini-btn revert-only" data-revert="[^"]+">[^<]*<\/button>/g,'');
-if(app===appBefore)throw new Error('v0.5.2 post-build patch failed: legacy Shifter controls were not found');
+if(app===appBeforeControls)throw new Error('v0.5.2 post-build patch failed: legacy Shifter controls were not found');
+
+// Render the support row in its final intended order from the first frame:
+// Relics on the left, Guardians on the right. Do not rely on async DOM reordering.
+const guardianFirst='<div class="support-row"><div class="table-zone"><div class="table-zone-head"><span>Guardians</span><b>${p.zones.Guardian.length}/3</b></div><div class="table-slots support-slots">${supportSlots(\'Guardian\')}</div></div><div class="table-zone"><div class="table-zone-head"><span>Relics</span><b>${p.zones.Relic.length}/3</b></div><div class="table-slots support-slots">${supportSlots(\'Relic\')}</div></div></div>';
+const relicFirst='<div class="support-row"><div class="table-zone"><div class="table-zone-head"><span>Relics</span><b>${p.zones.Relic.length}/3</b></div><div class="table-slots support-slots">${supportSlots(\'Relic\')}</div></div><div class="table-zone"><div class="table-zone-head"><span>Guardians</span><b>${p.zones.Guardian.length}/3</b></div><div class="table-slots support-slots">${supportSlots(\'Guardian\')}</div></div></div>';
+if(!app.includes(guardianFirst))throw new Error('v0.5.2 post-build patch failed: Guardian/Relic support row source was not found');
+app=app.replace(guardianFirst,relicFirst);
 fs.writeFileSync(appPath,app);
 
 // Pause the automatic Memory draw / Cast advance while a 10th Glamour choice is pending.
