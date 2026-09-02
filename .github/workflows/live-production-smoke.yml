@@ -23,9 +23,9 @@ jobs:
           for(const file of ['dist/app.js','dist/shifters-v045-patch.js','dist/shifters-v051-patch.js']){
             if(!fs.existsSync(file))continue;
             const s=fs.readFileSync(file,'utf8');
-            for(const needle of ['function startNextTurn','function nextPhase','startNextTurn=function']){
+            for(const needle of ['function startNextTurn','function nextPhase','function prepareTurnStart','function autoGlamourStart','startNextTurn=function','prepareTurnStart=function']){
               const i=s.indexOf(needle);
-              if(i>=0)console.log(`TURN_SOURCE ${file} ${needle}\n${s.slice(Math.max(0,i-250),i+1400)}\nTURN_SOURCE_END`);
+              if(i>=0)console.log(`TURN_SOURCE ${file} ${needle}\n${s.slice(Math.max(0,i-250),i+1800)}\nTURN_SOURCE_END`);
             }
           }
           NODE
