@@ -38,6 +38,11 @@
   function openGlamourChoice052(){
     const pending=state?.pendingGlamour;if(!pending)return false;const p=state.players?.[pending.pi];if(!p)return false;
     const d=ensureGlamourChoiceDialog052(),body=d.querySelector('#glamourChoiceBody052');
+    const pendingKey=`${pending.pi}|${pending.card?.instanceId||pending.card?.id||pending.card?.number||pending.card?.name||'glamour'}`;
+    // The body observer also sees this modal. Once a pending Glamour has been
+    // rendered, keep those exact DOM nodes stable until the player clicks a choice.
+    if(d.open&&d.dataset.pendingKey052===pendingKey)return true;
+    d.dataset.pendingKey052=pendingKey;
     body.innerHTML=`${glamourChoiceCard052(pending.card,'REVEALED 10TH+ GLAMOUR')}<p class="glamour-choice-copy-v052">You may keep your current nine Glamour and set the revealed card aside, or replace exactly one manifested Glamour. The revealed card only Manifests if it enters the field.</p><button class="button ghost glamour-keep-v052" data-glamour-keep-v052>Keep current 9 · set revealed card aside</button><div class="glamour-choice-grid-v052">${(p.glamourField||[]).map((g,i)=>`<button class="glamour-replace-v052" data-glamour-replace-v052="${i}">${glamourChoiceCard052(g,`REPLACE SLOT ${i+1}`)}</button>`).join('')}</div>`;
     if(!d.open)d.showModal();return true;
   }
