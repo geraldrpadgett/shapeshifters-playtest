@@ -1,0 +1,469 @@
+/* Shapeshifters v0.5.3 — premium high-fantasy tabletop theme
+   Visual-only layer. Preserve v0.5.2 gameplay geometry and interaction. */
+
+.fantasy-theme-v053{
+  --fantasy-ink:#090806;
+  --fantasy-night:#10100e;
+  --fantasy-leather:#21170e;
+  --fantasy-leather-2:#342314;
+  --fantasy-wood:#25170d;
+  --fantasy-wood-light:#3d2817;
+  --fantasy-gold:#c99a4b;
+  --fantasy-gold-bright:#f2d38b;
+  --fantasy-gold-dark:#6d4b21;
+  --fantasy-parchment:#e3cfaa;
+  --fantasy-parchment-dark:#b89461;
+  --fantasy-cream:#f2e6ca;
+  --fantasy-muted:#b7a789;
+  --fantasy-shadow:#000c;
+  color-scheme:dark;
+  background:#070705;
+}
+
+.fantasy-theme-v053 body{
+  color:var(--fantasy-cream);
+  background:
+    radial-gradient(circle at 18% 8%,rgba(118,73,28,.18),transparent 27%),
+    radial-gradient(circle at 82% 15%,rgba(104,66,26,.13),transparent 25%),
+    radial-gradient(circle at 50% 110%,rgba(73,42,18,.22),transparent 42%),
+    repeating-linear-gradient(92deg,rgba(255,255,255,.015) 0 1px,rgba(0,0,0,.045) 1px 4px),
+    linear-gradient(180deg,#0d0d0a 0%,#080806 45%,#050504 100%)!important;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+.fantasy-theme-v053 ::selection{background:#8c632c;color:#fff4d5}
+.fantasy-theme-v053 h1,
+.fantasy-theme-v053 h2,
+.fantasy-theme-v053 h3,
+.fantasy-theme-v053 h4,
+.fantasy-theme-v053 .shifter-name,
+.fantasy-theme-v053 .card-name,
+.fantasy-theme-v053 .table-zone-head,
+.fantasy-theme-v053 .lane-head,
+.fantasy-theme-v053 .pile-label,
+.fantasy-theme-v053 .area-label-v044,
+.fantasy-theme-v053 #cardDialogTitle{
+  font-family:Georgia,"Palatino Linotype","Book Antiqua",serif!important;
+}
+
+/* Whole player board: dark carved wood framed in aged gold. */
+.fantasy-theme-v053 .player-board{
+  position:relative;
+  isolation:isolate;
+  background:
+    radial-gradient(circle at 50% -5%,var(--accent-soft,rgba(201,154,75,.10)),transparent 32%),
+    repeating-linear-gradient(89deg,rgba(255,255,255,.015) 0 2px,rgba(0,0,0,.04) 2px 6px),
+    linear-gradient(180deg,rgba(49,31,17,.97),rgba(17,13,9,.985) 24%,rgba(10,10,8,.99))!important;
+  border-color:#6e4d25!important;
+  box-shadow:
+    0 18px 52px rgba(0,0,0,.56),
+    inset 0 0 0 1px rgba(242,211,139,.16),
+    inset 0 0 34px rgba(0,0,0,.56)!important;
+}
+.fantasy-theme-v053 .player-board::before{
+  content:"";
+  position:absolute;
+  inset:5px;
+  pointer-events:none;
+  z-index:25;
+  border:1px solid rgba(201,154,75,.22);
+  border-radius:inherit;
+  box-shadow:
+    inset 12px 0 18px -18px var(--fantasy-gold-bright),
+    inset -12px 0 18px -18px var(--fantasy-gold-bright);
+}
+.fantasy-theme-v053 .player-board.active{
+  box-shadow:
+    0 20px 60px rgba(0,0,0,.62),
+    0 0 0 1px var(--accent,#b88a42),
+    0 0 22px var(--accent-soft,rgba(201,154,75,.15)),
+    inset 0 0 0 1px rgba(242,211,139,.20),
+    inset 0 0 42px rgba(0,0,0,.52)!important;
+}
+
+/* Heraldic player ribbon. */
+.fantasy-theme-v053 .board-ribbon,
+.fantasy-theme-v053 .compact-ribbon{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.42),transparent 20% 80%,rgba(0,0,0,.42)),
+    linear-gradient(180deg,#3a2918,#1d140d)!important;
+  border-color:#8a6432!important;
+  box-shadow:inset 0 1px rgba(255,236,190,.12),inset 0 -1px rgba(0,0,0,.65),0 5px 18px rgba(0,0,0,.32)!important;
+}
+.fantasy-theme-v053 .board-ribbon-id img{
+  border:1px solid var(--fantasy-gold)!important;
+  box-shadow:0 0 0 3px rgba(20,13,7,.8),0 0 15px var(--accent-soft,rgba(201,154,75,.15))!important;
+}
+.fantasy-theme-v053 .shifter-name h2{
+  color:#f4dfad!important;
+  letter-spacing:.075em!important;
+  text-shadow:0 2px 2px #000,0 0 12px var(--accent-soft,rgba(201,154,75,.16));
+}
+.fantasy-theme-v053 .status-chip{
+  border-color:#8c6836!important;
+  background:linear-gradient(180deg,#322315,#17100a)!important;
+  color:#e6cb93!important;
+  box-shadow:inset 0 0 0 1px rgba(255,231,176,.08)!important;
+}
+.fantasy-theme-v053 .status-chip.active-chip{
+  border-color:var(--fantasy-gold)!important;
+  color:#fff0bd!important;
+  box-shadow:0 0 12px var(--accent-soft,rgba(201,154,75,.18)),inset 0 0 0 1px rgba(255,231,176,.12)!important;
+}
+
+/* The tabletop becomes an engraved leather playmat set into the wood. */
+.fantasy-theme-v053 .tabletop-wrap,
+.fantasy-theme-v053 .v4-tabletop{
+  background:
+    radial-gradient(ellipse at center,rgba(255,225,157,.035),transparent 58%),
+    repeating-linear-gradient(35deg,rgba(255,255,255,.01) 0 1px,transparent 1px 7px),
+    linear-gradient(180deg,rgba(21,18,13,.82),rgba(8,8,7,.72))!important;
+}
+.fantasy-theme-v053 .v4-tabletop{
+  box-shadow:inset 0 0 0 1px rgba(142,102,51,.36),inset 0 0 34px rgba(0,0,0,.44)!important;
+}
+
+/* Area of Influence: parchment/stone banner and two distinct support wings. */
+.fantasy-theme-v053 .area-label-v044{
+  color:#dcc28a!important;
+  text-shadow:0 1px 2px #000;
+  letter-spacing:.28em!important;
+}
+.fantasy-theme-v053 .area-influence-v044::before,
+.fantasy-theme-v053 .area-influence-v044::after{
+  content:"";
+  display:block;
+  height:1px;
+  margin:3px 8%;
+  background:linear-gradient(90deg,transparent,#76542a 18%,#d2aa61 50%,#76542a 82%,transparent);
+  opacity:.75;
+}
+.fantasy-theme-v053 .table-zone{
+  background:
+    radial-gradient(circle at 50% 0,rgba(255,220,144,.055),transparent 38%),
+    linear-gradient(180deg,rgba(48,34,20,.94),rgba(16,13,10,.97))!important;
+  border-color:#77562d!important;
+  box-shadow:inset 0 0 0 1px rgba(230,197,132,.08),inset 0 -18px 28px rgba(0,0,0,.27),0 5px 16px rgba(0,0,0,.23)!important;
+}
+.fantasy-theme-v053 .support-row .table-zone:first-child{
+  box-shadow:inset 0 0 0 1px rgba(87,178,202,.12),inset 0 -18px 28px rgba(0,0,0,.27),0 5px 16px rgba(0,0,0,.23)!important;
+}
+.fantasy-theme-v053 .support-row .table-zone:last-child{
+  box-shadow:inset 0 0 0 1px rgba(214,154,62,.15),inset 0 -18px 28px rgba(0,0,0,.27),0 5px 16px rgba(0,0,0,.23)!important;
+}
+.fantasy-theme-v053 .table-zone-head{
+  color:#e5c88f!important;
+  letter-spacing:.13em!important;
+  text-transform:uppercase;
+  text-shadow:0 1px 2px #000;
+  border-bottom-color:#614725!important;
+}
+.fantasy-theme-v053 .slot{
+  border-color:#5f472c!important;
+  background:linear-gradient(180deg,rgba(11,10,8,.74),rgba(24,17,11,.74))!important;
+  box-shadow:inset 0 0 14px rgba(0,0,0,.35)!important;
+}
+
+/* Echo field: mystical runic spokes around the Shifter. */
+.fantasy-theme-v053 .echo-ring{
+  position:relative;
+  background:radial-gradient(circle at 50% 50%,var(--accent-soft,rgba(201,154,75,.09)) 0,rgba(0,0,0,.08) 31%,transparent 64%)!important;
+}
+.fantasy-theme-v053 .echo-spoke{
+  background:
+    radial-gradient(circle at 50% 100%,rgba(255,220,148,.04),transparent 48%),
+    linear-gradient(180deg,rgba(31,24,17,.86),rgba(12,11,9,.91))!important;
+  border-color:#604724!important;
+  box-shadow:inset 0 0 0 1px rgba(227,195,128,.06),inset 0 0 18px rgba(0,0,0,.28)!important;
+}
+.fantasy-theme-v053 .echo-red{border-color:#7d332b!important}.fantasy-theme-v053 .echo-orange{border-color:#845323!important}
+.fantasy-theme-v053 .echo-yellow{border-color:#87722e!important}.fantasy-theme-v053 .echo-green{border-color:#365d35!important}
+.fantasy-theme-v053 .echo-blue{border-color:#31536d!important}.fantasy-theme-v053 .echo-purple{border-color:#563e6c!important}
+
+/* Shifter = mythic hero card / centerpiece. */
+.fantasy-theme-v053 .shifter-center{
+  position:relative;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 18%,var(--accent-soft,rgba(201,154,75,.22)),transparent 32%),
+    linear-gradient(145deg,rgba(66,43,22,.96),rgba(15,13,10,.98) 45%,rgba(35,23,13,.98))!important;
+  border-color:#b6853f!important;
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.48),
+    0 0 18px var(--accent-soft,rgba(201,154,75,.16)),
+    inset 0 0 0 1px rgba(255,228,168,.20),
+    inset 0 0 0 4px rgba(54,35,18,.78),
+    inset 0 0 34px rgba(0,0,0,.36)!important;
+}
+.fantasy-theme-v053 .shifter-center::before{
+  content:"◆";
+  position:absolute;
+  left:50%;top:2px;
+  transform:translateX(-50%);
+  color:var(--fantasy-gold-bright);
+  font-size:9px;
+  text-shadow:0 0 7px var(--accent,#c99a4b);
+  pointer-events:none;
+  z-index:5;
+}
+.fantasy-theme-v053 .shifter-center>img{
+  border:2px solid #b78945!important;
+  background:#100d09!important;
+  box-shadow:0 0 0 3px rgba(20,14,8,.75),0 0 22px var(--accent-soft,rgba(201,154,75,.24))!important;
+}
+.fantasy-theme-v053 .shifter-center h3{
+  color:#f2d99f!important;
+  letter-spacing:.07em;
+  text-shadow:0 2px 2px #000;
+}
+.fantasy-theme-v053 .shifter-stat{
+  background:linear-gradient(180deg,rgba(59,40,22,.92),rgba(20,15,10,.96))!important;
+  border-color:#735128!important;
+  box-shadow:inset 0 0 0 1px rgba(238,202,132,.07)!important;
+}
+.fantasy-theme-v053 .shifter-stat span{color:#cfb57f!important;text-transform:uppercase;letter-spacing:.08em!important}
+.fantasy-theme-v053 .shifter-stat strong{color:#fff0c2!important;text-shadow:0 1px 2px #000}
+.fantasy-theme-v053 .shifter-center.is-flipped,
+.fantasy-theme-v053 .shifter-center.is-reverted{
+  filter:saturate(.72) brightness(.82);
+  box-shadow:0 7px 22px rgba(0,0,0,.54),inset 0 0 0 1px rgba(183,145,78,.18),inset 0 0 40px rgba(0,0,0,.56)!important;
+}
+
+/* Memory / Guardian / Relic / Echo cards: gilded fantasy CCG framing. */
+.fantasy-theme-v053 .card{
+  border-color:#8a6533!important;
+  box-shadow:
+    0 6px 16px rgba(0,0,0,.38),
+    inset 0 0 0 1px rgba(255,232,177,.11),
+    inset 0 -16px 24px rgba(0,0,0,.18)!important;
+  font-family:system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+.fantasy-theme-v053 .card:hover{
+  box-shadow:0 9px 24px rgba(0,0,0,.52),0 0 12px var(--accent-soft,rgba(201,154,75,.12)),inset 0 0 0 1px rgba(255,236,188,.17)!important;
+}
+.fantasy-theme-v053 .card-name{
+  color:#f2e2bf!important;
+  font-weight:700!important;
+  letter-spacing:.02em;
+  text-shadow:0 2px 2px #000;
+}
+.fantasy-theme-v053 .card-type{
+  color:#cdb783!important;
+  letter-spacing:.12em!important;
+  text-transform:uppercase;
+}
+.fantasy-theme-v053 .card-text{color:#dfd4bd!important;text-shadow:0 1px 1px rgba(0,0,0,.75)}
+.fantasy-theme-v053 .card-stats{
+  color:#f1d89f!important;
+  border-top-color:#6d502b!important;
+  background:rgba(8,7,6,.34)!important;
+}
+.fantasy-theme-v053 .cost{
+  background:radial-gradient(circle at 35% 28%,#5b4020,#1c140c 65%,#080705)!important;
+  color:#fff0be!important;
+  border-color:#d0a354!important;
+  box-shadow:0 0 0 2px rgba(24,16,8,.84),0 2px 8px rgba(0,0,0,.55),inset 0 1px rgba(255,235,176,.28)!important;
+  font-family:Georgia,"Palatino Linotype",serif!important;
+}
+.fantasy-theme-v053 .card .card-number{
+  color:#ddc796!important;
+  border-color:#76552b!important;
+  background:linear-gradient(180deg,rgba(44,31,18,.96),rgba(18,13,9,.96))!important;
+  box-shadow:inset 0 0 0 1px rgba(255,230,171,.06)!important;
+}
+.fantasy-theme-v053 .trigger-chip{
+  background:linear-gradient(180deg,#332313,#120d09)!important;
+  box-shadow:0 2px 6px rgba(0,0,0,.55),inset 0 0 0 1px rgba(255,255,255,.04)!important;
+  font-family:Georgia,"Palatino Linotype",serif!important;
+}
+.fantasy-theme-v053 .trigger-chip.react{color:#f0ae5e!important}.fantasy-theme-v053 .trigger-chip.manifest{color:#66dbc9!important}.fantasy-theme-v053 .trigger-chip.awaken{color:#d1a8ff!important}
+.fantasy-theme-v053 .play-hint{
+  border-color:#c39a52!important;
+  background:linear-gradient(180deg,#5a4021,#24180e)!important;
+  color:#fff0c5!important;
+  box-shadow:0 3px 9px rgba(0,0,0,.48),inset 0 0 0 1px rgba(255,236,190,.10)!important;
+  font-family:Georgia,"Palatino Linotype",serif!important;
+  letter-spacing:.09em!important;
+}
+
+/* Resource cards become jewel-like magical objects. */
+.fantasy-theme-v053 .glamour{
+  border-color:#a57d3f!important;
+  background:
+    radial-gradient(circle at 50% 28%,rgba(255,255,255,.10),transparent 24%),
+    radial-gradient(circle at 50% 48%,var(--accent-soft,rgba(120,78,176,.18)),transparent 52%),
+    linear-gradient(155deg,#25182f,#0e0b12 62%,#1a111f)!important;
+  box-shadow:0 5px 14px rgba(0,0,0,.45),inset 0 0 0 1px rgba(255,239,198,.12),inset 0 0 18px rgba(92,60,135,.17)!important;
+}
+.fantasy-theme-v053 .glamour-value{
+  color:#fff0c7!important;
+  font-family:Georgia,"Palatino Linotype",serif!important;
+  text-shadow:0 2px 3px #000,0 0 9px rgba(174,121,255,.34)!important;
+}
+.fantasy-theme-v053 .glamour-number{color:#c8b58f!important}
+.fantasy-theme-v053 .glamour-title{color:#e8dbbf!important}
+.fantasy-theme-v053 .glamour.tapped{filter:saturate(.72) brightness(.72)}
+.fantasy-theme-v053 .ability-card{
+  border-color:#8e6937!important;
+  background:
+    radial-gradient(circle at 50% 0,rgba(160,112,222,.11),transparent 42%),
+    linear-gradient(180deg,#291f31,#130f18)!important;
+  color:#eadcc4!important;
+  box-shadow:0 5px 15px rgba(0,0,0,.39),inset 0 0 0 1px rgba(227,199,154,.09)!important;
+}
+.fantasy-theme-v053 .ability-card strong{color:#f2ddad!important;font-family:Georgia,"Palatino Linotype",serif!important}
+
+/* Glamour / Awakening rails feel like magical reliquaries built into the table. */
+.fantasy-theme-v053 .resource-rail-v044 .deck-lane-panel,
+.fantasy-theme-v053 .resource-rail-v044 .glamour-lane,
+.fantasy-theme-v053 .resource-rail-v044 .awakening-lane{
+  background:
+    repeating-linear-gradient(90deg,rgba(255,255,255,.012) 0 1px,transparent 1px 5px),
+    linear-gradient(180deg,rgba(48,31,18,.94),rgba(14,12,9,.98))!important;
+  border-color:#74542b!important;
+  box-shadow:inset 0 0 0 1px rgba(239,207,144,.08),inset 0 0 26px rgba(0,0,0,.34)!important;
+}
+.fantasy-theme-v053 .lane-head{color:#e0c183!important;text-shadow:0 1px 2px #000}
+.fantasy-theme-v053 .glamour-rail-v044 .lane-head b{color:#e5c98e!important}.fantasy-theme-v053 .awakening-rail-v044 .lane-head b{color:#d8b6ed!important}
+.fantasy-theme-v053 .rail-deck-v044{
+  background:radial-gradient(circle at center,rgba(210,166,86,.06),transparent 58%)!important;
+}
+
+/* Decks, discard and Truth become physical tabletop objects. */
+.fantasy-theme-v053 .physical-pile,
+.fantasy-theme-v053 .renown-pile{
+  background:
+    linear-gradient(135deg,rgba(255,232,179,.05),transparent 35%),
+    repeating-linear-gradient(92deg,rgba(255,255,255,.018) 0 1px,transparent 1px 4px),
+    linear-gradient(180deg,#382615,#17100a)!important;
+  border-color:#8b6534!important;
+  box-shadow:0 7px 16px rgba(0,0,0,.42),inset 0 0 0 1px rgba(242,216,161,.10),inset -5px -6px 12px rgba(0,0,0,.24)!important;
+}
+.fantasy-theme-v053 .pile-label{color:#d5b777!important;letter-spacing:.12em!important;text-shadow:0 1px 2px #000}
+.fantasy-theme-v053 .physical-pile strong,
+.fantasy-theme-v053 .renown-pile strong{color:#f5dfaa!important;font-family:Georgia,"Palatino Linotype",serif!important;text-shadow:0 2px 3px #000}
+.fantasy-theme-v053 .pile-glamour{box-shadow:0 7px 16px rgba(0,0,0,.45),0 0 12px rgba(133,80,190,.18),inset 0 0 0 1px rgba(209,172,246,.11)!important}
+.fantasy-theme-v053 .pile-awakening{box-shadow:0 7px 16px rgba(0,0,0,.45),0 0 12px rgba(219,175,74,.16),inset 0 0 0 1px rgba(250,216,137,.11)!important}
+.fantasy-theme-v053 .renown-pile{box-shadow:0 7px 16px rgba(0,0,0,.45),0 0 11px rgba(207,163,72,.13),inset 0 0 0 1px rgba(244,218,162,.10)!important}
+
+/* Hand = player's leather folio. */
+.fantasy-theme-v053 .hand-wrap{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.22),transparent 13% 87%,rgba(0,0,0,.22)),
+    linear-gradient(180deg,rgba(54,37,21,.96),rgba(18,13,9,.985))!important;
+  border-color:#71512a!important;
+  box-shadow:0 10px 28px rgba(0,0,0,.37),inset 0 0 0 1px rgba(238,207,146,.07)!important;
+}
+.fantasy-theme-v053 .hand-head{border-bottom-color:#634724!important}
+.fantasy-theme-v053 .hand-head h3{color:#e7ca91!important;letter-spacing:.08em!important}
+.fantasy-theme-v053 .deck-info{color:#a99673!important}
+.fantasy-theme-v053 .hand-glamour-summary-v051{
+  border-color:#a2783b!important;
+  background:linear-gradient(180deg,#3d2a17,#1b130c)!important;
+  color:#f0d8a2!important;
+  box-shadow:inset 0 0 0 1px rgba(255,234,183,.08),0 4px 13px rgba(0,0,0,.26)!important;
+  font-family:Georgia,"Palatino Linotype",serif!important;
+}
+
+/* Fantasy buttons: carved bronze / gilded leather. */
+.fantasy-theme-v053 .button,
+.fantasy-theme-v053 .mini-btn,
+.fantasy-theme-v053 .board-buttons button,
+.fantasy-theme-v053 .combat-select-v044,
+.fantasy-theme-v053 .combat-target,
+.fantasy-theme-v053 .awakening-replace-option,
+.fantasy-theme-v053 .glamour-replace-v052,
+.fantasy-theme-v053 .glamour-keep-v052{
+  border-color:#9b7137!important;
+  background:linear-gradient(180deg,#4a321b,#20150c)!important;
+  color:#f0d8a3!important;
+  box-shadow:inset 0 1px rgba(255,232,179,.13),0 3px 9px rgba(0,0,0,.34)!important;
+  font-family:Georgia,"Palatino Linotype",serif!important;
+}
+.fantasy-theme-v053 .button:hover,
+.fantasy-theme-v053 .mini-btn:hover,
+.fantasy-theme-v053 .board-buttons button:hover,
+.fantasy-theme-v053 .combat-select-v044:hover,
+.fantasy-theme-v053 .combat-target:hover,
+.fantasy-theme-v053 .awakening-replace-option:hover,
+.fantasy-theme-v053 .glamour-replace-v052:hover,
+.fantasy-theme-v053 .glamour-keep-v052:hover{
+  border-color:#d2a85d!important;
+  background:linear-gradient(180deg,#604522,#2c1c0e)!important;
+  color:#fff0c4!important;
+  filter:brightness(1.06);
+}
+.fantasy-theme-v053 .button.primary{
+  background:linear-gradient(180deg,#6b4a22,#35200f)!important;
+  border-color:#d4a857!important;
+  color:#fff0bb!important;
+  box-shadow:0 0 12px rgba(205,158,72,.13),inset 0 1px rgba(255,239,195,.15)!important;
+}
+
+/* Combat console = engraved command plaque. */
+.fantasy-theme-v053 .combat-console-v044{
+  border-color:#8d6634!important;
+  background:linear-gradient(180deg,rgba(58,39,21,.96),rgba(20,14,9,.97))!important;
+  color:#ddc28e!important;
+  box-shadow:0 5px 16px rgba(0,0,0,.34),inset 0 0 0 1px rgba(245,217,161,.07)!important;
+  font-family:Georgia,"Palatino Linotype",serif!important;
+}
+.fantasy-theme-v053 .combat-selected-v044{
+  outline-color:#e0b363!important;
+  box-shadow:0 0 20px rgba(222,169,81,.38)!important;
+}
+
+/* Dialogs / inspect panels = dark codex windows with gilded trim. */
+.fantasy-theme-v053 dialog{
+  color:#eadcc0!important;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(206,158,76,.10),transparent 36%),
+    repeating-linear-gradient(92deg,rgba(255,255,255,.012) 0 1px,transparent 1px 5px),
+    linear-gradient(180deg,#332316,#130f0a)!important;
+  border-color:#a77a3d!important;
+  box-shadow:0 28px 90px rgba(0,0,0,.82),inset 0 0 0 1px rgba(244,216,157,.11),inset 0 0 36px rgba(0,0,0,.36)!important;
+}
+.fantasy-theme-v053 dialog::backdrop{background:rgba(3,3,2,.78);backdrop-filter:blur(2px)}
+.fantasy-theme-v053 #cardDialogTitle,
+.fantasy-theme-v053 .glamour-choice-head-v052 strong{
+  color:#f1d59d!important;
+  letter-spacing:.05em!important;
+  text-shadow:0 2px 2px #000;
+}
+.fantasy-theme-v053 .glamour-choice-head-v052 span{color:#a99064!important}
+.fantasy-theme-v053 .glamour-choice-card-v052,
+.fantasy-theme-v053 .awakening-choice-new{
+  border-color:#806038!important;
+  background:linear-gradient(180deg,rgba(49,34,20,.94),rgba(17,13,9,.96))!important;
+  color:#e7d8b9!important;
+  box-shadow:inset 0 0 0 1px rgba(238,209,150,.06)!important;
+}
+.fantasy-theme-v053 .glamour-choice-copy-v052{color:#c6b899!important}
+.fantasy-theme-v053 .detail-trigger-row{border-bottom:1px solid rgba(132,94,47,.35);padding-bottom:5px}
+
+/* Fine texture / scrollbars. */
+.fantasy-theme-v053 *{scrollbar-color:#76542c #17110b}
+.fantasy-theme-v053 ::-webkit-scrollbar{width:8px;height:8px}
+.fantasy-theme-v053 ::-webkit-scrollbar-track{background:#17110b}
+.fantasy-theme-v053 ::-webkit-scrollbar-thumb{background:linear-gradient(#8b6535,#50371d);border:1px solid #21170e;border-radius:8px}
+
+/* Triggered cards pulse like enchanted objects, without moving layout. */
+@keyframes fantasyTriggerPulse053{
+  0%,100%{filter:brightness(1);}
+  50%{filter:brightness(1.12);}
+}
+.fantasy-theme-v053 .trigger-active-v049,
+.fantasy-theme-v053 .trigger-active-v050{
+  animation:fantasyTriggerPulse053 1.35s ease-in-out infinite!important;
+}
+
+/* Keep existing responsive geometry; only reduce expensive effects on compact screens. */
+@media(max-width:900px){
+  .fantasy-theme-v053 .player-board{box-shadow:0 12px 32px rgba(0,0,0,.55),inset 0 0 0 1px rgba(242,211,139,.12)!important}
+  .fantasy-theme-v053 .card{box-shadow:0 4px 10px rgba(0,0,0,.37),inset 0 0 0 1px rgba(255,232,177,.08)!important}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .fantasy-theme-v053 .trigger-active-v049,
+  .fantasy-theme-v053 .trigger-active-v050{animation:none!important}
+}
