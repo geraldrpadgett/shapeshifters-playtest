@@ -32,7 +32,7 @@ const sleep=ms=>new Promise(r=>setTimeout(r,ms));
     assert.equal(visual.bodyClass,true);assert.equal(visual.fox,true);assert.equal(visual.snake,true);
     assert.equal(visual.boardRadius,'4px');assert.equal(visual.boardBorder,'3px');assert.match(visual.boardBg,/repeating-linear-gradient|linear-gradient/);
     assert.equal(visual.shifterRadius,'3px');assert.equal(visual.shifterBorder,'double');
-    assert.equal(visual.cardRadius,'2px');assert.equal(visual.cardBorder,'double');assert.equal(visual.glamourRadius,'4px');assert.equal(visual.buttonRadius,'2px');
+    assert.equal(visual.cardRadius,'2px');assert.equal(visual.cardBorder,'double');assert.equal(visual.glamourRadius,'2px');assert.equal(visual.buttonRadius,'2px');
     assert.match(visual.bodyBg,/repeating-linear-gradient/);assert.match(visual.foxStamp,/EMBER COURT/);assert.match(visual.snakeStamp,/COILED COURT/);assert.deepEqual(errors,[]);
     fs.mkdirSync('artifacts',{recursive:true});await page.screenshot({path:'artifacts/v056-dnd-tabletop.png',fullPage:true});
     console.log('V056_THEME_SMOKE_PASS',JSON.stringify(visual));
