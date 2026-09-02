@@ -1,0 +1,26 @@
+/* Shapeshifters v0.5.7 — visual layering fixes */
+.dnd-theme-v056 .player-board::before{
+  inset:auto!important;
+  right:auto!important;
+  bottom:auto!important;
+  left:50%!important;
+  top:-10px!important;
+  width:auto!important;
+  height:auto!important;
+  min-width:0!important;
+  min-height:0!important;
+  transform:translateX(-50%)!important;
+}
+
+.dnd-theme-v056 .echo-ring{
+  isolation:isolate!important;
+}
+.dnd-theme-v056 .echo-ring::before{
+  z-index:0!important;
+  opacity:.48!important;
+  pointer-events:none!important;
+}
+.dnd-theme-v056 .echo-ring > *{
+  position:relative;
+  z-index:2!important;
+}
