@@ -1,0 +1,12 @@
+const fs=require('fs');
+const path=require('path');
+const out=path.join(__dirname,'dist');
+for(const name of ['shifters-v055-prismatic.css','shifters-v055-prismatic.js'])fs.copyFileSync(path.join(__dirname,name),path.join(out,name));
+const indexPath=path.join(out,'index.html');
+let html=fs.readFileSync(indexPath,'utf8');
+html=html.replace(/\s*<link[^>]*shifters-v055-prismatic\.css[^>]*>/ig,'');
+html=html.replace(/\s*<script[^>]*shifters-v055-prismatic\.js[^>]*><\/script>/ig,'');
+html=html.replace('</head>','  <link rel="stylesheet" href="shifters-v055-prismatic.css">\n</head>');
+html=html.replace('</body>','  <script src="shifters-v055-prismatic.js"></script>\n</body>');
+fs.writeFileSync(indexPath,html);
+console.log('Applied Shapeshifters v0.5.5 prismatic tabletop overhaul.');
