@@ -23,5 +23,5 @@ jobs:
       - name: Test deployed production game
         env:
           PLAYTEST_URL: https://shapeshifters-playtest-wzwi.vercel.app
-          EXPECTED_VERSION: 0.5.0-recover-combat
+          EXPECTED_VERSION: 0.5.1-automation-polish
         run: node tests/live-smoke.cjs
