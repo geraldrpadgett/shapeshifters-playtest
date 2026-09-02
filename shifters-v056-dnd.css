@@ -1,0 +1,308 @@
+/* Shapeshifters v0.5.6 — D&D / illuminated-manuscript tabletop overhaul
+   Visual-only. Replaces the clean prismatic skin with carved wood, leather,
+   parchment, weathered brass and ornate fantasy framing. */
+
+.dnd-theme-v056{
+  --v056-ink:#180f08;
+  --v056-night:#090704;
+  --v056-wood:#2a180d;
+  --v056-wood2:#432616;
+  --v056-leather:#21150c;
+  --v056-brass:#9f7436;
+  --v056-gold:#d3a653;
+  --v056-gold2:#f0cf83;
+  --v056-iron:#3a342d;
+  --v056-parchment:#d8bd88;
+  --v056-parchment2:#b9955e;
+  --v056-cream:#f1dfb6;
+  --v056-shadow:#000c;
+  color-scheme:dark;
+}
+
+/* --- WORLD / TABLE --- */
+.dnd-theme-v056 body{
+  color:#ead9b2!important;
+  background:
+    radial-gradient(circle at 8% 7%,rgba(255,174,61,.11),transparent 18%),
+    radial-gradient(circle at 92% 10%,rgba(255,189,80,.08),transparent 19%),
+    repeating-linear-gradient(91deg,rgba(255,219,148,.018) 0 1px,rgba(0,0,0,.07) 1px 5px),
+    repeating-linear-gradient(3deg,rgba(255,255,255,.008) 0 2px,rgba(0,0,0,.045) 2px 7px),
+    linear-gradient(180deg,#1f1209 0%,#120b06 44%,#080604 100%)!important;
+  font-family:Georgia,"Palatino Linotype","Book Antiqua",serif!important;
+}
+.dnd-theme-v056 body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.62;
+  background:
+    radial-gradient(ellipse at 15% 40%,rgba(255,159,54,.035),transparent 32%),
+    radial-gradient(ellipse at 85% 62%,rgba(255,194,96,.028),transparent 31%),
+    repeating-radial-gradient(ellipse at 50% 50%,transparent 0 28px,rgba(0,0,0,.035) 29px 31px);
+  mix-blend-mode:screen;
+}
+.dnd-theme-v056 header,.dnd-theme-v056 .topbar,.dnd-theme-v056 .toolbar{
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.38),transparent 12% 88%,rgba(0,0,0,.38)),
+    repeating-linear-gradient(87deg,rgba(255,226,166,.018) 0 2px,transparent 2px 7px),
+    linear-gradient(180deg,#3b2414,#21140c 50%,#120c07)!important;
+  border:1px solid #76542d!important;border-radius:0!important;
+  box-shadow:0 10px 28px #000a,inset 0 1px rgba(249,211,137,.16),inset 0 -3px #0b0704!important;
+}
+
+.dnd-theme-v056 h1,.dnd-theme-v056 h2,.dnd-theme-v056 h3,.dnd-theme-v056 h4,
+.dnd-theme-v056 .shifter-name,.dnd-theme-v056 .card-name,.dnd-theme-v056 .table-zone-head,
+.dnd-theme-v056 .area-label-v044,.dnd-theme-v056 .lane-head,.dnd-theme-v056 #cardDialogTitle{
+  font-family:Georgia,"Palatino Linotype","Book Antiqua",serif!important;
+  letter-spacing:.075em;
+}
+
+/* --- PLAYER BOARDS: CARVED WOOD AND METAL --- */
+.dnd-theme-v056 .player-board{
+  --v056-accent:#a67335;--v056-glow:#d4a352;
+  position:relative;isolation:isolate;overflow:visible!important;
+  background:
+    linear-gradient(90deg,rgba(0,0,0,.26),transparent 8% 92%,rgba(0,0,0,.26)),
+    repeating-linear-gradient(92deg,rgba(255,223,157,.015) 0 2px,rgba(0,0,0,.045) 2px 8px),
+    radial-gradient(ellipse at 50% 16%,color-mix(in srgb,var(--v056-accent) 12%,transparent),transparent 34%),
+    linear-gradient(180deg,#3b2415 0%,#24160d 22%,#160f0a 58%,#0c0906 100%)!important;
+  border:3px solid #51361d!important;border-radius:4px!important;
+  outline:1px solid #a07137!important;outline-offset:-7px;
+  box-shadow:0 24px 60px #000c,inset 0 0 0 1px rgba(239,202,133,.14),inset 0 0 54px #0009!important;
+}
+.dnd-theme-v056 .player-board.v055-fox{--v056-accent:#9f2f1d;--v056-glow:#df6e2b}
+.dnd-theme-v056 .player-board.v055-snake{--v056-accent:#306536;--v056-glow:#79a64b}
+.dnd-theme-v056 .player-board::before{
+  content:"✦  ◇  ✦";position:absolute;left:50%;top:-10px;transform:translateX(-50%);z-index:30;
+  color:#d9ae61;background:#21140c;padding:0 14px;border:1px solid #76542d;border-radius:0;
+  font-size:11px;letter-spacing:.34em;text-shadow:0 1px #000,0 0 8px color-mix(in srgb,var(--v056-glow) 34%,transparent);
+  box-shadow:0 3px 8px #0008;
+}
+.dnd-theme-v056 .player-board::after{
+  content:"";position:absolute;inset:7px;pointer-events:none;z-index:29;
+  border:1px solid rgba(208,161,80,.18);
+  box-shadow:inset 18px 0 22px -24px #f0c871,inset -18px 0 22px -24px #f0c871;
+}
+.dnd-theme-v056 .v055-theme-stamp{
+  border-radius:0!important;background:#1b110a!important;border:1px solid #6a4928!important;color:#cfae72!important;
+  font-family:Georgia,serif!important;letter-spacing:.16em!important;box-shadow:inset 0 0 0 1px #0008!important;
+}
+
+/* --- HERALDIC NAME BAR --- */
+.dnd-theme-v056 .board-ribbon,.dnd-theme-v056 .compact-ribbon{
+  position:relative;z-index:3;
+  background:
+    linear-gradient(90deg,#180f09 0%,color-mix(in srgb,var(--v056-accent) 36%,#2b190e) 16%,#372315 50%,color-mix(in srgb,var(--v056-accent) 32%,#29180d) 84%,#160e08 100%)!important;
+  border:2px solid #77532c!important;border-radius:2px!important;
+  clip-path:polygon(14px 0,calc(100% - 14px) 0,100% 50%,calc(100% - 14px) 100%,14px 100%,0 50%);
+  box-shadow:inset 0 1px #d4aa64,inset 0 -2px #0b0704,0 5px 16px #0009!important;
+}
+.dnd-theme-v056 .shifter-name h2{color:#f1d398!important;text-shadow:0 2px #000,0 0 9px color-mix(in srgb,var(--v056-glow) 30%,transparent)!important}
+.dnd-theme-v056 .status-chip{
+  border-radius:2px!important;background:linear-gradient(180deg,#3a2818,#1a110a)!important;border:1px solid #7d5a31!important;color:#d7bd8a!important;
+  box-shadow:inset 0 1px rgba(255,232,181,.12),inset 0 -1px #080503!important;
+}
+.dnd-theme-v056 .status-chip.active-chip{border-color:#c49349!important;color:#ffe0a1!important;box-shadow:0 0 10px color-mix(in srgb,var(--v056-glow) 24%,transparent),inset 0 0 0 1px #2a1a0d!important}
+
+/* --- PLAYMAT / AREA OF INFLUENCE --- */
+.dnd-theme-v056 .tabletop-wrap,.dnd-theme-v056 .v4-tabletop{
+  position:relative;z-index:1;
+  background:
+    radial-gradient(circle at 50% 40%,color-mix(in srgb,var(--v056-accent) 8%,transparent),transparent 36%),
+    repeating-linear-gradient(37deg,rgba(255,255,255,.008) 0 1px,transparent 1px 7px),
+    linear-gradient(180deg,#19130d,#0c0a07)!important;
+  border-radius:0!important;border:1px solid #5e4327!important;
+  box-shadow:inset 0 0 0 4px #0b0805,inset 0 0 0 5px #6b4a28,inset 0 0 44px #000b!important;
+}
+.dnd-theme-v056 .area-influence-v044{
+  position:relative;background:
+    linear-gradient(180deg,rgba(69,47,28,.78),rgba(25,18,12,.88))!important;
+  border:2px solid #684925!important;border-radius:1px!important;padding:11px!important;
+  box-shadow:inset 0 0 0 1px rgba(214,174,104,.11),inset 0 -20px 35px #0004,0 7px 16px #0007!important;
+}
+.dnd-theme-v056 .area-influence-v044::before,.dnd-theme-v056 .area-influence-v044::after{
+  content:"◆";position:absolute;top:50%;transform:translateY(-50%);color:#b18443;font-size:9px;text-shadow:0 1px #000;
+}
+.dnd-theme-v056 .area-influence-v044::before{left:-6px}.dnd-theme-v056 .area-influence-v044::after{right:-6px}
+.dnd-theme-v056 .area-label-v044{color:#d6b774!important;text-transform:uppercase;letter-spacing:.28em!important;text-shadow:0 2px #000!important}
+
+.dnd-theme-v056 .table-zone{
+  position:relative;background:
+    radial-gradient(circle at 50% 0,rgba(218,173,95,.055),transparent 36%),
+    linear-gradient(180deg,#3a2819,#18110b 58%,#0d0906)!important;
+  border:2px solid #644724!important;border-radius:2px!important;
+  box-shadow:inset 0 0 0 1px rgba(227,187,114,.09),inset 0 0 24px #0007,0 4px 12px #0006!important;
+}
+.dnd-theme-v056 .table-zone::before{
+  content:"";position:absolute;inset:3px;pointer-events:none;border:1px solid rgba(202,154,78,.13);
+}
+.dnd-theme-v056 .table-zone-head{color:#d9b66d!important;border-bottom:1px solid #6c4d29!important;text-transform:uppercase;letter-spacing:.16em!important;text-shadow:0 1px #000!important}
+.dnd-theme-v056 .slot{
+  background:radial-gradient(circle at 50% 45%,rgba(124,85,39,.11),transparent 58%),#100c08!important;
+  border:1px solid #5b4228!important;border-radius:50%!important;box-shadow:inset 0 0 18px #000b,inset 0 0 0 2px #20150c!important;
+}
+
+/* --- ECHO RING / ARCANE ENGRAVING --- */
+.dnd-theme-v056 .echo-ring{
+  position:relative;background:
+    radial-gradient(circle at center,color-mix(in srgb,var(--v056-accent) 14%,transparent) 0 22%,transparent 48%),
+    repeating-conic-gradient(from 0deg,rgba(208,164,85,.07) 0 1deg,transparent 1deg 30deg)!important;
+}
+.dnd-theme-v056 .echo-ring::before{
+  content:"✧      ✦      ✧      ✦      ✧      ✦";position:absolute;inset:8% 12%;display:grid;place-items:center;
+  border:1px solid #74512b;border-radius:50%;color:#8e6738;font-size:9px;letter-spacing:.55em;pointer-events:none;
+  box-shadow:inset 0 0 0 5px #100b07,inset 0 0 0 6px rgba(189,140,67,.22),0 0 15px color-mix(in srgb,var(--v056-glow) 12%,transparent);
+}
+.dnd-theme-v056 .echo-spoke{
+  background:linear-gradient(180deg,#2d2116,#140f0a)!important;border:1px solid #5e4225!important;border-radius:2px!important;
+  box-shadow:inset 0 0 0 1px rgba(226,187,111,.05),inset 0 0 16px #0007!important;
+}
+.dnd-theme-v056 .echo-red{border-color:#79342b!important}.dnd-theme-v056 .echo-orange{border-color:#7a5129!important}.dnd-theme-v056 .echo-yellow{border-color:#7e6b32!important}.dnd-theme-v056 .echo-green{border-color:#39583a!important}.dnd-theme-v056 .echo-blue{border-color:#314d5f!important}.dnd-theme-v056 .echo-purple{border-color:#4e3d5a!important}
+
+/* --- SHIFTER: ORNATE HERO CARD, NOT A MODERN PANEL --- */
+.dnd-theme-v056 .shifter-center{
+  position:relative;overflow:visible!important;
+  background:
+    radial-gradient(circle at 50% 27%,color-mix(in srgb,var(--v056-accent) 18%,transparent),transparent 34%),
+    linear-gradient(160deg,#4a2e1a,#21140c 42%,#0f0b07 100%)!important;
+  border:3px double #ad7a35!important;border-radius:3px!important;
+  outline:1px solid #2a180d!important;outline-offset:-7px;
+  clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px);
+  box-shadow:0 12px 26px #000b,0 0 13px color-mix(in srgb,var(--v056-glow) 15%,transparent),inset 0 0 26px #0008!important;
+}
+.dnd-theme-v056 .shifter-center::before{
+  content:"◆"!important;position:absolute!important;left:50%!important;top:-13px!important;transform:translateX(-50%) rotate(45deg)!important;
+  width:20px;height:20px;display:grid;place-items:center;background:#2d1b0f;border:2px solid #b27d36!important;color:var(--v056-glow)!important;font-size:9px!important;
+  text-shadow:0 0 7px var(--v056-glow)!important;z-index:8!important;box-shadow:0 3px 8px #0009!important;
+}
+.dnd-theme-v056 .shifter-center>img{
+  border-radius:50%!important;border:3px double #c09348!important;background:#0d0906!important;
+  box-shadow:0 0 0 4px #1b1009,0 0 0 5px #674522,0 0 20px color-mix(in srgb,var(--v056-glow) 23%,transparent)!important;
+  filter:contrast(1.06) saturate(1.08);
+}
+.dnd-theme-v056 .shifter-center h3{color:#edcf91!important;text-shadow:0 2px #000!important}
+.dnd-theme-v056 .shifter-stat{
+  background:radial-gradient(circle at 35% 28%,#5a3c20,#1b1109 67%,#090604)!important;border:2px solid #7b552d!important;border-radius:50%!important;
+  box-shadow:inset 0 0 0 1px #bc8847,inset 0 0 10px #000a,0 2px 5px #0008!important;
+}
+.dnd-theme-v056 .shifter-stat span{color:#c9a66c!important;text-transform:uppercase!important;letter-spacing:.06em!important;font-size:.67em!important}
+.dnd-theme-v056 .shifter-stat strong{color:#ffe3a3!important;text-shadow:0 1px #000!important}
+
+/* --- MEMORY / GLAMOUR / AWAKENING RAILS --- */
+.dnd-theme-v056 .resource-rail-v044,.dnd-theme-v056 .glamour-lane,.dnd-theme-v056 .awakening-lane,.dnd-theme-v056 .memory-center-v044{
+  background:
+    repeating-linear-gradient(90deg,rgba(255,224,158,.012) 0 2px,transparent 2px 6px),
+    linear-gradient(180deg,#332116,#160f0a)!important;
+  border:2px solid #5f4325!important;border-radius:2px!important;
+  box-shadow:inset 0 0 0 1px rgba(222,180,105,.07),inset 0 0 25px #0008,0 5px 14px #0007!important;
+}
+.dnd-theme-v056 .lane-head{color:#d6b46e!important;text-transform:uppercase;letter-spacing:.17em!important;text-shadow:0 1px #000!important}
+.dnd-theme-v056 .pile-memory,.dnd-theme-v056 .pile-glamour,.dnd-theme-v056 .pile-awakening,.dnd-theme-v056 .memory-dock{
+  border-radius:2px!important;border:2px solid #684a29!important;
+  background:linear-gradient(145deg,#402a18,#130d08)!important;
+  box-shadow:0 6px 15px #0009,inset 0 0 0 1px rgba(233,194,120,.08),inset 0 0 18px #0007!important;
+}
+
+/* --- CARDS: WEATHERED FANTASY FRAMES --- */
+.dnd-theme-v056 .card{
+  --v056-card:#85623b;position:relative;overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 4%,color-mix(in srgb,var(--v056-card) 18%,transparent),transparent 32%),
+    linear-gradient(180deg,rgba(39,27,18,.98),rgba(15,11,8,.985))!important;
+  border:3px double color-mix(in srgb,var(--v056-card) 74%,#bf9557)!important;border-radius:2px!important;
+  clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px);
+  box-shadow:0 7px 16px #000a,inset 0 0 0 2px #130c07,inset 0 0 20px #0007!important;
+  font-family:Georgia,"Palatino Linotype",serif!important;
+}
+.dnd-theme-v056 .card::before{
+  content:"◆";position:absolute;left:50%;top:-2px;transform:translateX(-50%) rotate(45deg);width:9px;height:9px;color:var(--v056-card);font-size:7px;z-index:5;text-shadow:0 0 4px var(--v056-card);
+}
+.dnd-theme-v056 .card.v055-red{--v056-card:#9a4032}.dnd-theme-v056 .card.v055-orange{--v056-card:#9d6131}.dnd-theme-v056 .card.v055-yellow{--v056-card:#9c823d}.dnd-theme-v056 .card.v055-green{--v056-card:#47704c}.dnd-theme-v056 .card.v055-blue{--v056-card:#3d687c}.dnd-theme-v056 .card.v055-purple{--v056-card:#6d4d7e}
+.dnd-theme-v056 .card-name{color:#edd8a6!important;font-weight:700!important;text-shadow:0 2px #000!important}
+.dnd-theme-v056 .card-type{color:#baa06e!important;text-transform:uppercase!important;letter-spacing:.12em!important;border-bottom:1px solid rgba(174,132,68,.24)!important}
+.dnd-theme-v056 .card-text{color:#d8c8aa!important;text-shadow:0 1px #000!important}
+.dnd-theme-v056 .card-stats{color:#efcc83!important;background:#0d0906aa!important;border-top:1px solid #604323!important}
+.dnd-theme-v056 .cost{
+  border-radius:50%!important;background:radial-gradient(circle at 35% 28%,#694621,#1b1008 68%,#080503)!important;
+  border:2px solid #b07d38!important;color:#ffe0a0!important;box-shadow:0 0 0 2px #120b06,0 3px 8px #000b,inset 0 1px #e6c176!important;
+}
+.dnd-theme-v056 .card-number{
+  border-radius:1px!important;background:#1d120a!important;border:1px solid #70502c!important;color:#cfb27e!important;box-shadow:inset 0 0 0 1px #090604!important;
+}
+.dnd-theme-v056 .trigger-chip{
+  border-radius:1px!important;background:#21150c!important;border:1px solid #8a6230!important;color:#efcd88!important;
+  font-family:Georgia,serif!important;letter-spacing:.08em!important;box-shadow:inset 0 0 0 1px #080503!important;
+}
+.dnd-theme-v056 .trigger-chip.manifest{border-color:#4e8d83!important;color:#b7dfd6!important}.dnd-theme-v056 .trigger-chip.react{border-color:#a06536!important;color:#edc18c!important}.dnd-theme-v056 .trigger-chip.awaken{border-color:#5c73a8!important;color:#c0d0f0!important}
+.dnd-theme-v056 .card-action-hint-v050{
+  border-radius:1px!important;background:linear-gradient(180deg,#5a3c20,#2a190d)!important;border:1px solid #c08c48!important;color:#ffe0a3!important;
+  box-shadow:inset 0 1px #e8c780,inset 0 -2px #110a05,0 3px 7px #0008!important;font-family:Georgia,serif!important;
+}
+
+/* --- GLAMOUR: GEM / ARCANE TALISMAN, NOT A CLEAN TILE --- */
+.dnd-theme-v056 .glamour{
+  position:relative;border-radius:4px!important;border:2px solid #8c6534!important;
+  background:
+    radial-gradient(circle at 50% 32%,rgba(205,169,255,.22),transparent 34%),
+    linear-gradient(145deg,#3d2648,#191022 58%,#0c0810)!important;
+  clip-path:polygon(12px 0,calc(100% - 12px) 0,100% 12px,100% calc(100% - 12px),calc(100% - 12px) 100%,12px 100%,0 calc(100% - 12px),0 12px);
+  box-shadow:0 5px 13px #000a,inset 0 0 0 1px rgba(241,215,255,.08),inset 0 0 18px #0007!important;
+}
+.dnd-theme-v056 .glamour::before{content:"✦";position:absolute;left:50%;top:4px;transform:translateX(-50%);color:#d9b6ef;text-shadow:0 0 9px #9f63ba;font-size:9px}
+.dnd-theme-v056 .glamour-value{color:#f7d6ff!important;text-shadow:0 2px #000,0 0 8px #b578ca!important}
+.dnd-theme-v056 .glamour-title{color:#d7b9dd!important;font-family:Georgia,serif!important}
+.dnd-theme-v056 .glamour.tapped{filter:saturate(.62) brightness(.68)!important;transform:rotate(3deg)!important}
+.dnd-theme-v056 .ability-card{
+  border-radius:3px!important;border:2px solid #756044!important;
+  background:linear-gradient(180deg,#263447,#121a24)!important;box-shadow:inset 0 0 0 1px rgba(196,216,241,.08),0 4px 10px #0007!important;
+}
+
+/* --- BUTTONS / CONTROLS: METAL & WOOD PLAQUES --- */
+.dnd-theme-v056 button,.dnd-theme-v056 .button,.dnd-theme-v056 [role="button"]{
+  font-family:Georgia,"Palatino Linotype",serif!important;border-radius:2px!important;
+}
+.dnd-theme-v056 button:not(.card):not(.glamour){
+  background:
+    linear-gradient(180deg,rgba(255,224,159,.07),transparent 36%),
+    linear-gradient(180deg,#4b3320,#21150d 58%,#100a06)!important;
+  border:2px solid #76522d!important;color:#e2c58d!important;
+  box-shadow:inset 0 1px #bc8c4c,inset 0 -2px #080503,0 4px 9px #0008!important;
+  text-shadow:0 1px #000!important;
+}
+.dnd-theme-v056 button:hover:not(:disabled){border-color:#b27e3b!important;color:#ffe0a0!important;background:linear-gradient(180deg,#5e4025,#28180d)!important}
+.dnd-theme-v056 button:disabled{filter:grayscale(.4) brightness(.64)!important;opacity:.72!important}
+
+/* --- DIALOGS / INSPECT: ILLUMINATED CODEX --- */
+.dnd-theme-v056 dialog,.dnd-theme-v056 #cardDialog,.dnd-theme-v056 #handDialog,.dnd-theme-v056 #glamourChoiceDialog{
+  background:
+    radial-gradient(circle at 10% 8%,rgba(255,255,255,.16),transparent 15%),
+    repeating-linear-gradient(4deg,rgba(98,66,33,.035) 0 1px,transparent 1px 5px),
+    linear-gradient(180deg,#dbc18e,#c5a66f)!important;
+  color:#24170d!important;border:5px double #72512d!important;border-radius:3px!important;
+  box-shadow:0 25px 70px #000d,inset 0 0 0 4px rgba(66,42,20,.18),inset 0 0 44px rgba(93,58,26,.12)!important;
+}
+.dnd-theme-v056 dialog::backdrop{background:radial-gradient(circle at center,rgba(61,36,17,.42),rgba(4,3,2,.86))!important;backdrop-filter:blur(1.5px)}
+.dnd-theme-v056 dialog .modal-head,.dnd-theme-v056 #cardDialog .modal-head{
+  background:linear-gradient(180deg,#4a301c,#20140c)!important;border-bottom:2px solid #8c6333!important;color:#efd19a!important;
+  clip-path:polygon(16px 0,calc(100% - 16px) 0,100% 50%,calc(100% - 16px) 100%,16px 100%,0 50%);
+}
+.dnd-theme-v056 #cardDialogTitle{color:#f0d39a!important;text-shadow:0 2px #000!important}
+.dnd-theme-v056 .detail-trigger-row,.dnd-theme-v056 .card-detail,.dnd-theme-v056 .dialog-card-detail{color:#2a1b10!important}
+.dnd-theme-v056 dialog .card-text,.dnd-theme-v056 dialog p,.dnd-theme-v056 dialog span:not(.trigger-chip){color:#2e1d10!important;text-shadow:none!important}
+.dnd-theme-v056 .hand-glamour-summary-v051{
+  background:#302011!important;color:#e9cf98!important;border:1px solid #7c572d!important;border-radius:1px!important;font-family:Georgia,serif!important;
+}
+
+/* --- COMBAT / PHASE PANELS --- */
+.dnd-theme-v056 .combat-panel,.dnd-theme-v056 .phase-console,.dnd-theme-v056 .combat-console,.dnd-theme-v056 .phase-bar{
+  background:linear-gradient(180deg,#382517,#171009)!important;border:2px solid #684823!important;border-radius:2px!important;
+  box-shadow:inset 0 0 0 1px rgba(218,176,102,.08),0 5px 14px #0007!important;
+}
+.dnd-theme-v056 .phase-pill,.dnd-theme-v056 .phase-chip{
+  border-radius:1px!important;background:#21150c!important;border:1px solid #70502d!important;color:#ccb17c!important;
+}
+
+/* --- SMALL-SCREEN: KEEP ORNAMENT, REDUCE BULK --- */
+@media(max-width:900px){
+  .dnd-theme-v056 .player-board{border-width:2px!important;outline-offset:-5px}
+  .dnd-theme-v056 .player-board::before{font-size:8px;top:-8px}
+  .dnd-theme-v056 .shifter-center{border-width:2px!important}
+  .dnd-theme-v056 .card{border-width:2px!important}
+}
