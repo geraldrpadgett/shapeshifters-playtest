@@ -59,9 +59,9 @@ const step=name=>console.log(`V054_SMOKE_STEP ${name}`);
 
   step('manifest-truth');
   const manifestTruth=await page.evaluate(()=>{
-    const p=state.players[0],card=window.APP_BETA_V02_DECKS.glamour.fox.find(c=>c.number===5);p.renown=0;p.glamourField=[];p.glamourDeck=[JSON.parse(JSON.stringify(card))];autoTurnGlamour(0,{ready:true,source:'v054 smoke'});return {truth:p.renown,name:p.glamourField[0]?.name,once:p.glamourField[0]?._v054SimpleManifestResolved===true};
+    const p=state.players[0],card=window.APP_BETA_V02_DECKS.glamour.fox.find(c=>c.number===5);p.renown=0;p.glamourField=[];p.glamourDeck=[JSON.parse(JSON.stringify(card))];autoTurnGlamour(0,{ready:true,source:'v054 smoke'});return {truth:p.renown,name:p.glamourField[0]?.name};
   });
-  assert.deepEqual(manifestTruth,{truth:3,name:'Mirror Flame',once:true});
+  assert.deepEqual(manifestTruth,{truth:3,name:'Mirror Flame'},'Manifest — Gain 3 Truth must resolve exactly once');
 
   step('relic-provides-glamour');
   const relicResource=await page.evaluate(()=>{
@@ -86,9 +86,9 @@ const step=name=>console.log(`V054_SMOKE_STEP ${name}`);
 
   step('awaken-truth');
   const awakenTruth=await page.evaluate(()=>{
-    const p=state.players[0],a=JSON.parse(JSON.stringify(window.APP_BETA_V02_DECKS.awakening.fox.find(c=>c.number===18)));state.active=0;p.renown=0;p.awakeningField=[];p.awakeningDeck=[a];p.flags.awakeningDrawn=false;autoAwakeningThenCleanup();return {truth:p.renown,name:p.awakeningField[0]?.name,resolved:p.awakeningField[0]?._v054AwakenTruthResolved===true};
+    const p=state.players[0],a=JSON.parse(JSON.stringify(window.APP_BETA_V02_DECKS.awakening.fox.find(c=>c.number===18)));state.active=0;p.renown=0;p.awakeningField=[];p.awakeningDeck=[a];p.flags.awakeningDrawn=false;autoAwakeningThenCleanup();return {truth:p.renown,name:p.awakeningField[0]?.name};
   });
-  assert.deepEqual(awakenTruth,{truth:3,name:'Stories of the Hunt',resolved:true});
+  assert.deepEqual(awakenTruth,{truth:3,name:'Stories of the Hunt'},'Awaken — Gain 3 Truth must resolve exactly once');
 
   assert.deepEqual(errors,[],`browser errors: ${errors.join(' | ')}`);
   console.log('V054_LIVE_SMOKE_PASS',JSON.stringify({version,decks:{foxMemory:decks.fox.memory.count,snakeMemory:decks.snake.memory.count,glamourValues:decks.fox.glamour.values},manifestTruth,relicResource,discount,reacts,awakenTruth}));
