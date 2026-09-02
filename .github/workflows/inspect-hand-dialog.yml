@@ -1,0 +1,27 @@
+name: Inspect Active Hand source
+on:
+  push:
+    branches: [inspect-hand-dialog-v052]
+
+jobs:
+  inspect:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm run build
+      - name: Print Active Hand source
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          for(const file of ['dist/app.js','dist/shifters-v045-patch.js','dist/shifters-v051-patch.js']){
+            if(!fs.existsSync(file))continue;
+            const s=fs.readFileSync(file,'utf8');
+            for(const needle of ['function openMyHandDialog','openMyHandDialog=function','handDialogBody','data-hand-card']){
+              let i=s.indexOf(needle);
+              while(i>=0){console.log(`HAND_SOURCE ${file} ${needle}\n${s.slice(Math.max(0,i-700),i+3000)}\nHAND_SOURCE_END`);i=s.indexOf(needle,i+1);}
+            }
+          }
+          NODE
