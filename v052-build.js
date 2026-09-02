@@ -56,6 +56,18 @@ required(oldAuto,newAuto,'nine-card Glamour choice engine');
 
 fs.writeFileSync(gamePath,game);
 
+// The legacy renderer still emitted manual Shifter flip/revert controls and the
+// v0.5.1 decorator removed them a tick later. Remove them at build time so they
+// never exist or flash in the DOM.
+const appPath=path.join(out,'app.js');
+let app=fs.readFileSync(appPath,'utf8');
+const appBefore=app;
+app=app.replace(/<button class="button primary" data-shifter-flip="[^"]+">Flip Face Up<\/button>/g,'');
+app=app.replace(/<button class="shifter-flip-corner" data-shifter-flip="[^"]+" title="[^"]*">FLIP<\/button>\s*/g,'');
+app=app.replace(/<button class="mini-btn revert-only" data-revert="[^"]+">[^<]*<\/button>/g,'');
+if(app===appBefore)throw new Error('v0.5.2 post-build patch failed: legacy Shifter controls were not found');
+fs.writeFileSync(appPath,app);
+
 // Pause the automatic Memory draw / Cast advance while a 10th Glamour choice is pending.
 const uiPath=path.join(out,'shifters-v051-patch.js');
 let ui=fs.readFileSync(uiPath,'utf8');
