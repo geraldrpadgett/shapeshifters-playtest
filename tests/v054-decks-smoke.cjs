@@ -46,12 +46,12 @@ const step=name=>console.log(`V054_SMOKE_STEP ${name}`);
     assert.equal(decks[key].glamour.count,18);assert.deepEqual(decks[key].glamour.values,{'1':4,'2':4,'3':3,'4':3,'5':2,'6':2});
     assert.equal(decks[key].awakening.count,18);
   }
-  assert.deepEqual(decks.fox.memory.cards[0],{number:1,name:'Kindled Claws',type:'Echo',color:'Red',cost:3,text:'Your Shifter gets +1 Strength.'});
+  assert.deepEqual(decks.fox.memory.cards[0],{number:1,name:'Kindled Claws',type:'Echo',color:'Red',cost:3,text:'Your Shifter gets +1 Strength.',strength:undefined,power:undefined,guard:undefined,vitality:undefined});
   assert.equal(decks.fox.memory.cards[31].name,'Trickster Mask');assert.equal(decks.fox.memory.cards[31].type,'Relic');assert.equal(decks.fox.memory.cards[31].cost,3);
   assert.equal(decks.fox.memory.cards[34].name,'Sudden Pounce');assert.match(decks.fox.memory.cards[34].text,/\+2 Power for this Clash/);
   assert.equal(decks.fox.glamour.cards[0].name,'Foxfire Spark');assert.equal(decks.fox.glamour.cards[4].name,'Mirror Flame');assert.equal(decks.fox.glamour.cards[17].name,'Nine-Tailed Flame');
   assert.equal(decks.fox.awakening.cards[16].name,'Call of the Den');assert.equal(decks.fox.awakening.cards[17].name,'Stories of the Hunt');
-  assert.deepEqual(decks.snake.memory.cards[0],{number:1,name:'Thickened Scales',type:'Echo',color:'Green',cost:3,text:'Your Shifter gets +1 Vitality.'});
+  assert.deepEqual(decks.snake.memory.cards[0],{number:1,name:'Thickened Scales',type:'Echo',color:'Green',cost:3,text:'Your Shifter gets +1 Vitality.',strength:undefined,power:undefined,guard:undefined,vitality:undefined});
   assert.equal(decks.snake.memory.cards[31].name,'Altar of Renewal');assert.equal(decks.snake.memory.cards[31].type,'Relic');assert.equal(decks.snake.memory.cards[31].cost,3);
   assert.equal(decks.snake.memory.cards[34].name,'Sudden Coil');assert.match(decks.snake.memory.cards[35].text,/\+2 Vitality for this Clash/);
   assert.equal(decks.snake.glamour.cards[0].name,'Venom Spark');assert.equal(decks.snake.glamour.cards[4].name,'Coiled Light');assert.equal(decks.snake.glamour.cards[17].name,'Ancient Venom');
