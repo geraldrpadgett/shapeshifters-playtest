@@ -16,15 +16,18 @@ jobs:
         run: npm run build
       - name: Syntax-check built JavaScript
         run: find dist -type f -name '*.js' -print0 | xargs -0 -n1 node --check
-      - name: Verify fantasy theme and deck assets
+      - name: Verify theme and deck assets
         run: |
           test -f dist/shifters-v053-fantasy.css
           test -f dist/shifters-v053-fantasy.js
           test -f dist/shifters-v054-decks.js
-          grep -q 'shifters-v053-fantasy.css' dist/index.html
-          grep -q 'shifters-v053-fantasy.js' dist/index.html
+          test -f dist/shifters-v055-prismatic.css
+          test -f dist/shifters-v055-prismatic.js
           grep -q 'shifters-v054-decks.js' dist/index.html
+          grep -q 'shifters-v055-prismatic.css' dist/index.html
+          grep -q 'shifters-v055-prismatic.js' dist/index.html
           grep -q '0.5.4-app-beta-v02-decks' dist/shifters-v054-decks.js
+          grep -q '0.5.5-prismatic-tabletop' dist/shifters-v055-prismatic.js
       - name: Install browser test runtime
         run: |
           npm install --no-save playwright@1.55.0
@@ -32,8 +35,16 @@ jobs:
       - name: Test deployed production game
         env:
           PLAYTEST_URL: https://shapeshifters-playtest-wzwi.vercel.app
-          EXPECTED_VERSION: 0.5.4-app-beta-v02-decks
+          EXPECTED_VERSION: 0.5.5-prismatic-tabletop
         run: |
           node tests/live-smoke.cjs
           node tests/v052-rules-smoke.cjs
           node tests/v054-decks-smoke.cjs
+          node tests/v055-theme-smoke.cjs
+      - name: Upload visual proof
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: v055-prismatic-screenshot
+          path: artifacts/v055-prismatic.png
+          if-no-files-found: ignore
