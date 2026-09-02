@@ -1,0 +1,186 @@
+/* Shapeshifters v0.5.5 — Prismatic Tabletop
+   Strong visual overhaul inspired by the supplied glamour/shifter icon language. */
+.prismatic-theme-v055{
+  --v055-bg:#06101b;
+  --v055-panel:#081421ee;
+  --v055-panel-2:#0d1b2bee;
+  --v055-ink:#eef8ff;
+  --v055-muted:#9ab3c7;
+  --v055-line:#59738e;
+  --v055-gold:#f0c979;
+  --v055-prism:#dffcff;
+  color-scheme:dark;
+}
+.prismatic-theme-v055 body{
+  color:var(--v055-ink)!important;
+  background:
+    radial-gradient(circle at 50% -10%,rgba(195,237,255,.18),transparent 30%),
+    radial-gradient(circle at 12% 30%,rgba(141,45,255,.16),transparent 27%),
+    radial-gradient(circle at 88% 28%,rgba(0,220,180,.13),transparent 28%),
+    linear-gradient(145deg,#030810 0%,#071321 48%,#03070d 100%)!important;
+}
+.prismatic-theme-v055 body::before{
+  content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;opacity:.55;
+  background:
+    radial-gradient(circle at 50% 18%,rgba(255,255,255,.15) 0 1px,transparent 2px),
+    radial-gradient(circle at 23% 62%,rgba(116,206,255,.18) 0 1px,transparent 2px),
+    radial-gradient(circle at 77% 75%,rgba(234,164,255,.16) 0 1px,transparent 2px);
+  background-size:170px 170px,230px 230px,310px 310px;
+}
+.prismatic-theme-v055 header,
+.prismatic-theme-v055 .topbar,
+.prismatic-theme-v055 .toolbar{
+  background:linear-gradient(180deg,rgba(7,18,31,.96),rgba(4,11,20,.92))!important;
+  border-color:#31516d!important;
+  box-shadow:0 12px 34px #0008,inset 0 -1px rgba(180,235,255,.08)!important;
+}
+.prismatic-theme-v055 h1,
+.prismatic-theme-v055 h2,
+.prismatic-theme-v055 h3,
+.prismatic-theme-v055 .shifter-name,
+.prismatic-theme-v055 .card-name,
+.prismatic-theme-v055 .table-zone-head,
+.prismatic-theme-v055 .area-label-v044,
+.prismatic-theme-v055 .lane-head{
+  font-family:Georgia,"Palatino Linotype",serif!important;
+  letter-spacing:.08em;
+}
+.prismatic-theme-v055 .player-board{
+  --v055-a:#71c9ff;--v055-b:#b66cff;--v055-c:#e9fbff;
+  position:relative;isolation:isolate;overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 34%,color-mix(in srgb,var(--v055-a) 19%,transparent),transparent 34%),
+    radial-gradient(circle at 10% 8%,color-mix(in srgb,var(--v055-b) 12%,transparent),transparent 29%),
+    linear-gradient(155deg,rgba(8,22,37,.985),rgba(5,12,22,.99) 55%,rgba(2,8,15,.995))!important;
+  border:1px solid color-mix(in srgb,var(--v055-a) 55%,#20354b)!important;
+  border-radius:28px!important;
+  box-shadow:0 24px 70px #000a,0 0 34px color-mix(in srgb,var(--v055-a) 15%,transparent),inset 0 0 0 1px rgba(220,248,255,.08),inset 0 0 90px rgba(0,0,0,.42)!important;
+}
+.prismatic-theme-v055 .player-board::before{
+  content:"";position:absolute;inset:-18% 20% 48%;border-radius:50%;pointer-events:none;z-index:0;
+  border:1px solid color-mix(in srgb,var(--v055-c) 32%,transparent);
+  box-shadow:0 0 50px color-mix(in srgb,var(--v055-a) 18%,transparent),inset 0 0 40px color-mix(in srgb,var(--v055-b) 9%,transparent);
+  opacity:.8;
+}
+.prismatic-theme-v055 .player-board::after{
+  content:"✦";position:absolute;right:22px;top:16px;color:var(--v055-c);font-size:20px;opacity:.7;pointer-events:none;text-shadow:0 0 18px var(--v055-a);
+}
+.prismatic-theme-v055 .player-board.v055-fox{--v055-a:#ff5a32;--v055-b:#a947ff;--v055-c:#ffd18a}
+.prismatic-theme-v055 .player-board.v055-snake{--v055-a:#28d487;--v055-b:#2bb7ff;--v055-c:#b9ffe2}
+.prismatic-theme-v055 .board-ribbon,
+.prismatic-theme-v055 .compact-ribbon{
+  position:relative;z-index:2;
+  background:linear-gradient(90deg,color-mix(in srgb,var(--v055-a) 18%,#06111d),#0b1a29 30% 70%,color-mix(in srgb,var(--v055-b) 16%,#06111d))!important;
+  border:1px solid color-mix(in srgb,var(--v055-a) 45%,#34536d)!important;
+  border-radius:18px!important;
+  box-shadow:inset 0 0 0 1px rgba(230,250,255,.06),0 10px 25px #0007!important;
+}
+.prismatic-theme-v055 .shifter-name h2{color:#fff7df!important;text-shadow:0 0 18px color-mix(in srgb,var(--v055-a) 55%,transparent),0 2px 2px #000}
+.prismatic-theme-v055 .status-chip{
+  background:#06121f!important;border:1px solid #36546e!important;color:#cfe8f7!important;border-radius:999px!important;
+}
+.prismatic-theme-v055 .status-chip.active-chip{border-color:var(--v055-a)!important;box-shadow:0 0 16px color-mix(in srgb,var(--v055-a) 38%,transparent)!important;color:white!important}
+.prismatic-theme-v055 .tabletop-wrap,
+.prismatic-theme-v055 .v4-tabletop{
+  position:relative;z-index:1;
+  background:
+    linear-gradient(rgba(137,210,255,.025) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(137,210,255,.025) 1px,transparent 1px),
+    radial-gradient(circle at center,color-mix(in srgb,var(--v055-a) 10%,transparent),transparent 43%),
+    linear-gradient(180deg,rgba(4,15,27,.82),rgba(3,10,18,.9))!important;
+  background-size:34px 34px,34px 34px,auto,auto!important;
+  border-radius:24px!important;
+  box-shadow:inset 0 0 0 1px color-mix(in srgb,var(--v055-a) 25%,#1c3349),inset 0 0 55px #0008!important;
+}
+.prismatic-theme-v055 .area-influence-v044{
+  border:1px solid color-mix(in srgb,var(--v055-a) 22%,#20384f)!important;
+  border-radius:20px!important;padding:10px!important;
+  background:linear-gradient(180deg,rgba(13,30,46,.72),rgba(5,14,24,.78))!important;
+  box-shadow:0 10px 24px #0005,inset 0 0 28px color-mix(in srgb,var(--v055-b) 6%,transparent)!important;
+}
+.prismatic-theme-v055 .area-label-v044{color:var(--v055-c)!important;text-transform:uppercase;letter-spacing:.28em!important;text-shadow:0 0 14px color-mix(in srgb,var(--v055-a) 55%,transparent)}
+.prismatic-theme-v055 .table-zone{
+  background:linear-gradient(180deg,rgba(15,32,49,.94),rgba(5,13,22,.97))!important;
+  border:1px solid color-mix(in srgb,var(--v055-a) 34%,#30465c)!important;border-radius:16px!important;
+  box-shadow:inset 0 0 0 1px rgba(225,249,255,.04),0 8px 18px #0005!important;
+}
+.prismatic-theme-v055 .table-zone-head{color:#dff5ff!important;border-color:#27455e!important;text-transform:uppercase;letter-spacing:.16em!important}
+.prismatic-theme-v055 .slot{
+  background:linear-gradient(180deg,rgba(2,9,16,.72),rgba(8,20,31,.72))!important;
+  border:1px dashed color-mix(in srgb,var(--v055-a) 28%,#38526a)!important;border-radius:13px!important;
+}
+.prismatic-theme-v055 .echo-ring{position:relative;background:radial-gradient(circle at center,color-mix(in srgb,var(--v055-a) 18%,transparent) 0,transparent 43%)!important}
+.prismatic-theme-v055 .echo-ring::before{
+  content:"";position:absolute;inset:8% 17%;border:1px solid color-mix(in srgb,var(--v055-c) 24%,transparent);border-radius:50%;pointer-events:none;box-shadow:0 0 28px color-mix(in srgb,var(--v055-a) 15%,transparent),inset 0 0 30px color-mix(in srgb,var(--v055-b) 8%,transparent)
+}
+.prismatic-theme-v055 .echo-spoke{
+  background:linear-gradient(180deg,rgba(10,24,38,.93),rgba(4,12,21,.96))!important;
+  border:1px solid #35526a!important;border-radius:14px!important;box-shadow:inset 0 0 20px #0005!important;
+}
+.prismatic-theme-v055 .echo-red{border-color:#b94746!important}.prismatic-theme-v055 .echo-orange{border-color:#b86d35!important}.prismatic-theme-v055 .echo-yellow{border-color:#af973e!important}.prismatic-theme-v055 .echo-green{border-color:#3d8d61!important}.prismatic-theme-v055 .echo-blue{border-color:#3d7ca5!important}.prismatic-theme-v055 .echo-purple{border-color:#7551a9!important}
+.prismatic-theme-v055 .shifter-center{
+  position:relative;overflow:visible!important;
+  background:radial-gradient(circle at 50% 27%,color-mix(in srgb,var(--v055-a) 24%,transparent),transparent 37%),linear-gradient(160deg,#0d2234,#06111e 65%,#091725)!important;
+  border:2px solid color-mix(in srgb,var(--v055-a) 72%,#e8faff)!important;border-radius:24px!important;
+  box-shadow:0 14px 36px #0009,0 0 34px color-mix(in srgb,var(--v055-a) 25%,transparent),inset 0 0 0 2px rgba(226,249,255,.07),inset 0 0 45px #0007!important;
+}
+.prismatic-theme-v055 .shifter-center::before{
+  content:"✧"!important;position:absolute!important;left:50%!important;top:-15px!important;transform:translateX(-50%)!important;color:var(--v055-c)!important;font-size:24px!important;text-shadow:0 0 20px var(--v055-a)!important;z-index:6!important
+}
+.prismatic-theme-v055 .shifter-center>img{
+  border-radius:50%!important;border:2px solid var(--v055-c)!important;background:#06111d!important;
+  box-shadow:0 0 0 5px #06111dcc,0 0 28px color-mix(in srgb,var(--v055-a) 45%,transparent)!important;
+}
+.prismatic-theme-v055 .shifter-center h3{color:#fff5da!important;text-shadow:0 0 14px var(--v055-a),0 2px 2px #000}
+.prismatic-theme-v055 .shifter-stat{
+  background:linear-gradient(180deg,rgba(17,38,57,.96),rgba(5,15,25,.98))!important;border:1px solid #3b5870!important;border-radius:12px!important;
+}
+.prismatic-theme-v055 .shifter-stat span{color:#9fc1d7!important;text-transform:uppercase!important;letter-spacing:.1em!important}.prismatic-theme-v055 .shifter-stat strong{color:#fff2c8!important}
+.prismatic-theme-v055 .resource-rail-v044,
+.prismatic-theme-v055 .glamour-lane,
+.prismatic-theme-v055 .awakening-lane,
+.prismatic-theme-v055 .memory-center-v044{
+  background:linear-gradient(180deg,rgba(11,27,43,.86),rgba(4,12,21,.9))!important;
+  border:1px solid color-mix(in srgb,var(--v055-a) 25%,#2c465e)!important;border-radius:18px!important;
+  box-shadow:inset 0 0 30px #0006,0 8px 18px #0004!important;
+}
+.prismatic-theme-v055 .glamour-lane{box-shadow:inset 0 0 32px rgba(189,125,255,.11),0 8px 18px #0004!important}.prismatic-theme-v055 .awakening-lane{box-shadow:inset 0 0 32px rgba(255,213,113,.09),0 8px 18px #0004!important}
+.prismatic-theme-v055 .lane-head{color:#e8f8ff!important;text-transform:uppercase;letter-spacing:.14em!important}
+.prismatic-theme-v055 .pile-memory,
+.prismatic-theme-v055 .pile-glamour,
+.prismatic-theme-v055 .pile-awakening,
+.prismatic-theme-v055 .memory-dock{
+  border-radius:15px!important;border-color:#48647c!important;background:linear-gradient(145deg,#10263a,#050e18)!important;box-shadow:0 7px 20px #0008,inset 0 0 20px rgba(132,210,255,.06)!important
+}
+.prismatic-theme-v055 .card{
+  --card-v055:#7bcfff;
+  position:relative;overflow:hidden;
+  background:linear-gradient(155deg,color-mix(in srgb,var(--card-v055) 14%,#0b1c2b),#07131f 43%,#040b13)!important;
+  border:1px solid color-mix(in srgb,var(--card-v055) 68%,#d8f6ff)!important;
+  border-radius:14px!important;
+  clip-path:polygon(9px 0,calc(100% - 9px) 0,100% 9px,100% calc(100% - 9px),calc(100% - 9px) 100%,9px 100%,0 calc(100% - 9px),0 9px);
+  box-shadow:0 9px 20px #0008,0 0 15px color-mix(in srgb,var(--card-v055) 11%,transparent),inset 0 0 0 1px rgba(230,250,255,.06)!important;
+}
+.prismatic-theme-v055 .card::before{content:"";position:absolute;inset:0 0 auto;height:3px;background:linear-gradient(90deg,transparent,var(--card-v055),#fff, var(--card-v055),transparent);opacity:.8}
+.prismatic-theme-v055 .card.v055-red{--card-v055:#ff6258}.prismatic-theme-v055 .card.v055-orange{--card-v055:#ff9a45}.prismatic-theme-v055 .card.v055-yellow{--card-v055:#f7d85a}.prismatic-theme-v055 .card.v055-green{--card-v055:#4ad88a}.prismatic-theme-v055 .card.v055-blue{--card-v055:#5dbdff}.prismatic-theme-v055 .card.v055-purple{--card-v055:#b26dff}
+.prismatic-theme-v055 .card-name{color:#fff4dc!important;text-shadow:0 1px 2px #000,0 0 12px color-mix(in srgb,var(--card-v055) 22%,transparent)}
+.prismatic-theme-v055 .card-type{color:color-mix(in srgb,var(--card-v055) 70%,#d9f4ff)!important;text-transform:uppercase;letter-spacing:.12em!important}.prismatic-theme-v055 .card-text{color:#d5e6f0!important}.prismatic-theme-v055 .card-stats{background:#02091088!important;color:#fff0bd!important;border-color:#37536b!important}
+.prismatic-theme-v055 .cost{background:radial-gradient(circle at 35% 28%,#244965,#06121f 68%)!important;border:1px solid var(--v055-gold)!important;color:#fff2bd!important;box-shadow:0 0 0 2px #03101b,0 0 12px color-mix(in srgb,var(--card-v055) 25%,transparent)!important}
+.prismatic-theme-v055 .trigger-chip{border-radius:999px!important;box-shadow:0 0 10px currentColor!important}.prismatic-theme-v055 .trigger-chip.manifest{background:#5b2c8a!important;color:#f2c6ff!important}.prismatic-theme-v055 .trigger-chip.react{background:#7c2628!important;color:#ffd0c8!important}.prismatic-theme-v055 .trigger-chip.awaken{background:#785d19!important;color:#fff0a8!important}
+.prismatic-theme-v055 .glamour{
+  background:radial-gradient(circle at 50% 28%,rgba(255,255,255,.23),rgba(126,75,205,.17) 24%,#081521 65%)!important;
+  border:1px solid #d8c4ff!important;border-radius:18px!important;box-shadow:0 0 20px rgba(181,110,255,.16),inset 0 0 20px rgba(208,244,255,.06)!important
+}
+.prismatic-theme-v055 .glamour-value{color:#fff!important;text-shadow:0 0 12px #dca8ff,0 1px 2px #000}.prismatic-theme-v055 .glamour-title{color:#decff4!important}
+.prismatic-theme-v055 button{
+  background:linear-gradient(180deg,#18334b,#091725)!important;border:1px solid #4c6f89!important;color:#edf9ff!important;border-radius:11px!important;box-shadow:inset 0 1px rgba(230,250,255,.08),0 4px 10px #0005!important
+}
+.prismatic-theme-v055 button:hover{border-color:#8cd7ff!important;box-shadow:0 0 15px rgba(95,196,255,.2),inset 0 1px rgba(230,250,255,.12)!important}
+.prismatic-theme-v055 .combat-console-v044,
+.prismatic-theme-v055 .phase-console{
+  background:linear-gradient(90deg,rgba(10,29,46,.96),rgba(6,17,29,.96))!important;border:1px solid color-mix(in srgb,var(--v055-a) 42%,#41617b)!important;border-radius:14px!important;box-shadow:0 8px 22px #0007,0 0 18px color-mix(in srgb,var(--v055-a) 12%,transparent)!important
+}
+.prismatic-theme-v055 dialog{background:linear-gradient(160deg,#0b2032,#06111d 62%,#091726)!important;border:1px solid #5f819b!important;color:#eaf8ff!important;box-shadow:0 30px 90px #000d,0 0 30px rgba(105,200,255,.12)!important}
+.prismatic-theme-v055 .floating-glamour-v049{background:linear-gradient(180deg,#563676,#221832)!important;border-color:#c69cff!important;color:#fff1ff!important;box-shadow:0 0 17px rgba(195,140,255,.28)!important}
+.prismatic-theme-v055 .v055-theme-stamp{position:absolute;left:18px;top:14px;z-index:4;font:700 10px/1 system-ui,sans-serif;letter-spacing:.22em;text-transform:uppercase;color:color-mix(in srgb,var(--v055-c) 75%,#d7f3ff);opacity:.72;pointer-events:none}
+@media (max-width:900px){.prismatic-theme-v055 .player-board{border-radius:20px!important}.prismatic-theme-v055 .v055-theme-stamp{display:none}.prismatic-theme-v055 .tabletop-wrap,.prismatic-theme-v055 .v4-tabletop{border-radius:18px!important}}
