@@ -90,7 +90,7 @@ const overlaps=(a,b)=>!!a&&!!b&&a.left<b.right&&a.right>b.left&&a.top<b.bottom&&
   await page.evaluate(()=>{
     const p=state.players[0];p.flipped=true;p.reverted=false;p.echoes.Red=[];p.hand=[{id:'smoke-echo',number:990,name:'Smoke Echo',type:'Echo',color:'Red',cost:0,text:'No additional effect.'}];state.active=0;state.phase=2;saveAndRender();openMyHandDialog(false);
   });
-  await page.locator('#handDialog[open] [data-hand-card="0|0"]').first().click();
+  await page.locator('#handDialog[open] [data-hand-dialog-card="0|0"]').first().click();
   await page.waitForFunction(()=>document.getElementById('cardDialog')?.open===true);
   await page.locator('#detailPlay').click();
   await page.waitForTimeout(100);
@@ -103,7 +103,7 @@ const overlaps=(a,b)=>!!a&&!!b&&a.left<b.right&&a.right>b.left&&a.top<b.bottom&&
     const p=state.players[0];state.active=0;state.phase=2;p.awakeningField=[];p.zones.Relic=[];p.zones.Guardian=[];if(!p.v044)p.v044={};p.v044.turnFlags={costFirstUsed:{}};p.v044.nextGuardianDiscount=0;p.glamourField=[{id:'pay',number:1,name:'Pay',value:6,text:'No additional effect.',tapped:false}];
     p.hand=[{id:'smoke-lantern',number:926,name:"Trickster's Lantern",type:'Relic',color:'Blue',cost:0,text:'Manifest — Draw 1 card. The first Guardian you play each turn costs 1 less Glamour.'}];saveAndRender();openMyHandDialog(false);
   });
-  await page.locator('#handDialog[open] [data-hand-card="0|0"]').first().click();await page.waitForFunction(()=>document.getElementById('cardDialog')?.open===true);await page.locator('#detailPlay').click();
+  await page.locator('#handDialog[open] [data-hand-dialog-card="0|0"]').first().click();await page.waitForFunction(()=>document.getElementById('cardDialog')?.open===true);await page.locator('#detailPlay').click();
   await page.waitForFunction(()=>state.players[0].v044?.nextGuardianDiscount===1);
   await page.evaluate(()=>document.querySelectorAll('dialog[open]').forEach(d=>d.close()));
   const oneShot=await page.evaluate(()=>{const p=state.players[0];p.hand=[{id:'smoke-32',number:32,name:'Smoke Guardian 32',type:'Guardian',color:'Red',cost:0,strength:1,power:1,guard:0,vitality:1,text:'No additional effect.'}];saveAndRender();return true;});
@@ -111,7 +111,7 @@ const overlaps=(a,b)=>!!a&&!!b&&a.left<b.right&&a.right>b.left&&a.top<b.bottom&&
   await page.waitForFunction(()=>state.players[0].hand[0]?.cost===1);
   const discounted=await page.evaluate(()=>effectiveCost(state.players[0],state.players[0].hand[0]));
   assert.equal(discounted,0,'Manifest discount should apply to the next Guardian on the Manifest turn');
-  await page.evaluate(()=>openMyHandDialog(false));await page.locator('#handDialog[open] [data-hand-card="0|0"]').first().click();await page.waitForFunction(()=>document.getElementById('cardDialog')?.open===true);await page.locator('#detailPlay').click();
+  await page.evaluate(()=>openMyHandDialog(false));await page.locator('#handDialog[open] [data-hand-dialog-card="0|0"]').first().click();await page.waitForFunction(()=>document.getElementById('cardDialog')?.open===true);await page.locator('#detailPlay').click();
   await page.waitForFunction(()=>state.players[0].v044?.nextGuardianDiscount===0);
   await page.evaluate(()=>document.querySelectorAll('dialog[open]').forEach(d=>d.close()));
   const laterCost=await page.evaluate(()=>{
