@@ -16,6 +16,19 @@ jobs:
         run: npm run build
       - name: Syntax-check built JavaScript
         run: find dist -type f -name '*.js' -print0 | xargs -0 -n1 node --check
+      - name: Inspect turn transition source
+        run: |
+          node - <<'NODE'
+          const fs=require('fs');
+          for(const file of ['dist/app.js','dist/shifters-v045-patch.js','dist/shifters-v051-patch.js']){
+            if(!fs.existsSync(file))continue;
+            const s=fs.readFileSync(file,'utf8');
+            for(const needle of ['function startNextTurn','function nextPhase','startNextTurn=function']){
+              const i=s.indexOf(needle);
+              if(i>=0)console.log(`TURN_SOURCE ${file} ${needle}\n${s.slice(Math.max(0,i-250),i+1400)}\nTURN_SOURCE_END`);
+            }
+          }
+          NODE
       - name: Install browser test runtime
         run: |
           npm install --no-save playwright@1.55.0
